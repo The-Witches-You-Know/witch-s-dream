@@ -4,6 +4,7 @@ class_name Interactable
 
 @export var defaultSprite: Texture2D
 @export var collisionShape: Shape2D
+@export var identifier: String
 
 # set to false when player cannot interact with this entity
 @onready var canInteract = true
@@ -20,6 +21,7 @@ func onTriggerEnter(player):
 		
 #run this if player exits the TriggerArea or another interactable is the closest to it
 func onTriggerExit(player):
+	if(canInteract):
 		player.removeInteractables(self)
 		
 # responsible for drawing a bright outline around the sprite

@@ -16,6 +16,8 @@ var closestInteractable = null
 
 func _ready():
 	outlineShader.set_shader_parameter("color", Color(randf(), randf(), randf(), 1.0))
+	SaveFile.loadFile()
+	print(SaveFile.saveData)
 
 
 func _physics_process(_delta):
@@ -86,11 +88,10 @@ func addToInventory(itemName, amount):
 		inventory[itemName] += amount
 	else:
 		inventory[itemName] = amount
-	print(inventory)
+	setSavefileData("Player.Inventory", inventory)
 
 
 func _on_area_2d_area_entered(area):
-	print(area)
 	if (area.get_parent().has_method("onTriggerEnter")):
 		area.get_parent().onTriggerEnter(self)
 
@@ -98,3 +99,7 @@ func _on_area_2d_area_entered(area):
 func _on_area_2d_area_exited(area):
 	if (area.get_parent().has_method("onTriggerExit")):
 		area.get_parent().onTriggerExit(self)
+		
+func setSavefileData(key, value):
+	SaveFile.saveData[key] = value
+	SaveFile.saveFile()
