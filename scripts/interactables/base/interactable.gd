@@ -21,8 +21,7 @@ func onTriggerEnter(player):
 		
 #run this if player exits the TriggerArea or another interactable is the closest to it
 func onTriggerExit(player):
-	if(canInteract):
-		player.removeInteractables(self)
+	player.removeInteractables(self)
 		
 # responsible for drawing a bright outline around the sprite
 func conditionallySetOutlineVisibility(value):

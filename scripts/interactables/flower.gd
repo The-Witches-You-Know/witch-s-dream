@@ -11,15 +11,18 @@ func onReady():
 	if (SaveFile.saveData.has(self.identifier+".canInteract")):
 		if (SaveFile.saveData[self.identifier+".canInteract"] == false):
 			$Area2D/Sprite.texture = pickedFlowerSprite
-			$Collider.shape = null
+			self.canInteract = false;
+	else:
+		self.canInteract = true;
+		
 
 # Flower gets picked
 func onInteractionTrigger(player):
-	self.canInteract = false;
+	print(self.identifier)
 	player.addToInventory(
 		"Flower",
 		randf_range(flowerQuantityRange[1], flowerQuantityRange[1])
 	)
-	player.setSavefileData(self.identifier+".canInteract", false)
+	SaveFile.setOrPut(self.identifier+".canInteract", false)
 	$Area2D/Sprite.texture = pickedFlowerSprite
-	$Collider.shape = null
+	self.canInteract = false;

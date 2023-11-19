@@ -31,4 +31,13 @@ static func saveFile():
 	
 static func calculateChecksum(saveData):
 	return JSON.stringify(saveData).md5_text()
+		
+static func setOrPut(key, value):
+	SaveFile.saveData[key] = value
+	SaveFile.saveFile()
+	
+static func safeGet(key):
+	if saveData.has(key):
+		return saveData[key]
+	return null
 	

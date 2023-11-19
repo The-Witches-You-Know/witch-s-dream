@@ -61,7 +61,9 @@ func addInteractables(interactable):
 	refreshClosestInteractable()
 	
 func removeInteractables(interactable):
-	interactablesInRange.erase(interactablesInRange.filter(func(x): return x.position == interactable.position)[0])	
+	var candidateInteractables = interactablesInRange.filter(func(x): return x.position == interactable.position)
+	if len(candidateInteractables) > 0:		
+		interactablesInRange.erase(candidateInteractables[0])	
 	refreshClosestInteractable()
 	
 	
@@ -89,7 +91,7 @@ func addToInventory(itemName, amount):
 		inventory[itemName] += amount
 	else:
 		inventory[itemName] = amount
-	setSavefileData("Player.Inventory", inventory)
+	SaveFile.setOrPut("Player.Inventory", inventory)
 
 
 func _on_area_2d_area_entered(area):
@@ -100,7 +102,3 @@ func _on_area_2d_area_entered(area):
 func _on_area_2d_area_exited(area):
 	if (area.get_parent().has_method("onTriggerExit")):
 		area.get_parent().onTriggerExit(self)
-		
-func setSavefileData(key, value):
-	SaveFile.saveData[key] = value
-	SaveFile.saveFile()
