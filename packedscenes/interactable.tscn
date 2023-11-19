@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://wanlt82saimp"]
+[gd_scene load_steps=5 format=3 uid="uid://wanlt82saimp"]
 
 [ext_resource type="Script" path="res://scripts/interactables/base/interactable.gd" id="1_47srk"]
 [ext_resource type="Material" uid="uid://dgau5sbugs6qw" path="res://packedscenes/shaderMaterial.tres" id="2_apif5"]
 [ext_resource type="Texture2D" uid="uid://cmggbtgfktdgg" path="res://sprites/For Items_Bell Flower.png" id="3_qajas"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c4rjw"]
 
 [node name="Interactable" type="StaticBody2D"]
 script = ExtResource("1_47srk")
@@ -15,5 +17,8 @@ material = ExtResource("2_apif5")
 use_parent_material = true
 scale = Vector2(2, 2)
 texture = ExtResource("3_qajas")
+
+[node name="TriggerArea" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_c4rjw")
 
 [node name="Collider" type="CollisionShape2D" parent="."]

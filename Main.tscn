@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://do2clar5jx0l3"]
+[gd_scene load_steps=48 format=3 uid="uid://do2clar5jx0l3"]
 
 [ext_resource type="Texture2D" uid="uid://beaogivrl50mm" path="res://backgrounds/forest_clearing.jpg" id="1_rpea1"]
 [ext_resource type="Script" path="res://CharacterBody2D.gd" id="1_su4ak"]
@@ -8,9 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://wanlt82saimp" path="res://packedscenes/interactable.tscn" id="3_gwnuu"]
 [ext_resource type="Texture2D" uid="uid://cmggbtgfktdgg" path="res://sprites/For Items_Bell Flower.png" id="4_cm6ki"]
 [ext_resource type="Material" uid="uid://dgau5sbugs6qw" path="res://packedscenes/shaderMaterial.tres" id="7_86swl"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_cx3nm"]
-radius = 1.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7u4hs"]
 
@@ -315,48 +312,33 @@ texture = ExtResource("2_v1tum")
 
 [node name="Interactable2" parent="." instance=ExtResource("3_gwnuu")]
 position = Vector2(335, 271)
-collision_layer = 2
-collision_mask = 2
 script = ExtResource("2_jn7h2")
 pickedFlowerSprite = null
 defaultSprite = ExtResource("4_cm6ki")
-collisionShape = SubResource("CircleShape2D_cx3nm")
 
 [node name="Interactable3" parent="." instance=ExtResource("3_gwnuu")]
 position = Vector2(-152, 82)
-collision_layer = 2
-collision_mask = 2
 script = ExtResource("2_jn7h2")
 pickedFlowerSprite = null
 defaultSprite = ExtResource("4_cm6ki")
-collisionShape = SubResource("CircleShape2D_cx3nm")
 
 [node name="Interactable" parent="." instance=ExtResource("3_gwnuu")]
 position = Vector2(333, 40)
-collision_layer = 2
-collision_mask = 2
 script = ExtResource("2_jn7h2")
 pickedFlowerSprite = null
 defaultSprite = ExtResource("4_cm6ki")
-collisionShape = SubResource("CircleShape2D_cx3nm")
 
 [node name="Interactable4" parent="." instance=ExtResource("3_gwnuu")]
 position = Vector2(-285, 271)
-collision_layer = 2
-collision_mask = 2
 script = ExtResource("2_jn7h2")
 pickedFlowerSprite = null
 defaultSprite = ExtResource("4_cm6ki")
-collisionShape = SubResource("CircleShape2D_cx3nm")
 
 [node name="Interactable5" parent="." instance=ExtResource("3_gwnuu")]
 position = Vector2(-424, -4)
-collision_layer = 2
-collision_mask = 2
 script = ExtResource("2_jn7h2")
 pickedFlowerSprite = null
 defaultSprite = ExtResource("4_cm6ki")
-collisionShape = SubResource("CircleShape2D_cx3nm")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." node_paths=PackedStringArray("animationplayer")]
 position = Vector2(50, 350)
@@ -409,5 +391,7 @@ shape = SubResource("SegmentShape2D_byd3s")
 position = Vector2(-169, -384)
 shape = SubResource("SegmentShape2D_hwdg8")
 
+[connection signal="area_entered" from="CharacterBody2D/Area2D" to="CharacterBody2D" method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="CharacterBody2D/Area2D" to="CharacterBody2D" method="_on_area_2d_area_exited"]
 [connection signal="body_entered" from="CharacterBody2D/Area2D" to="CharacterBody2D" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="CharacterBody2D/Area2D" to="CharacterBody2D" method="_on_area_2d_body_exited"]
