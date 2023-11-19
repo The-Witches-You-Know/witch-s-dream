@@ -315,30 +315,35 @@ position = Vector2(335, 271)
 script = ExtResource("2_jn7h2")
 pickedFlowerSprite = null
 defaultSprite = ExtResource("4_cm6ki")
+identifier = "Flower1"
 
 [node name="Interactable3" parent="." instance=ExtResource("3_gwnuu")]
 position = Vector2(-152, 82)
 script = ExtResource("2_jn7h2")
 pickedFlowerSprite = null
 defaultSprite = ExtResource("4_cm6ki")
+identifier = "Flower2"
 
 [node name="Interactable" parent="." instance=ExtResource("3_gwnuu")]
 position = Vector2(333, 40)
 script = ExtResource("2_jn7h2")
 pickedFlowerSprite = null
 defaultSprite = ExtResource("4_cm6ki")
+identifier = "Flower3"
 
 [node name="Interactable4" parent="." instance=ExtResource("3_gwnuu")]
 position = Vector2(-285, 271)
 script = ExtResource("2_jn7h2")
 pickedFlowerSprite = null
 defaultSprite = ExtResource("4_cm6ki")
+identifier = "Flower4"
 
 [node name="Interactable5" parent="." instance=ExtResource("3_gwnuu")]
 position = Vector2(-424, -4)
 script = ExtResource("2_jn7h2")
 pickedFlowerSprite = null
 defaultSprite = ExtResource("4_cm6ki")
+identifier = "Flower5"
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." node_paths=PackedStringArray("animationplayer")]
 position = Vector2(50, 350)

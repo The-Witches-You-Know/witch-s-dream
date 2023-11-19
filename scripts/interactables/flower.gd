@@ -8,16 +8,18 @@ class_name Flower
 var flowerQuantityRange = [1.0, 1.0]
 
 func onReady():
-	#if (SaveFile.saveData[])
-	pass
+	if (SaveFile.saveData.has(self.identifier+".canInteract")):
+		if (SaveFile.saveData[self.identifier+".canInteract"] == false):
+			$Area2D/Sprite.texture = pickedFlowerSprite
+			$Collider.shape = null
 
 # Flower gets picked
 func onInteractionTrigger(player):
 	self.canInteract = false;
-	$Area2D/Sprite.texture = pickedFlowerSprite
 	player.addToInventory(
 		"Flower",
 		randf_range(flowerQuantityRange[1], flowerQuantityRange[1])
 	)
-	player.setSavefileData(self.Identifier+".canInteract", false)
+	player.setSavefileData(self.identifier+".canInteract", false)
+	$Area2D/Sprite.texture = pickedFlowerSprite
 	$Collider.shape = null
