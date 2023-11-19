@@ -1,7 +1,16 @@
-[gd_scene load_steps=41 format=3 uid="uid://do2clar5jx0l3"]
+[gd_scene load_steps=49 format=3 uid="uid://do2clar5jx0l3"]
 
+[ext_resource type="Texture2D" uid="uid://beaogivrl50mm" path="res://backgrounds/forest_clearing.jpg" id="1_rpea1"]
 [ext_resource type="Script" path="res://CharacterBody2D.gd" id="1_su4ak"]
+[ext_resource type="Script" path="res://scripts/interactables/flower.gd" id="2_jn7h2"]
+[ext_resource type="Texture2D" uid="uid://uqs4apr8vx6x" path="res://backgrounds/tree_overlay.png" id="2_tdw8f"]
 [ext_resource type="Texture2D" uid="uid://jtxfywhk4sp" path="res://994f43c86d5b3db1fa95e57e85dad5fb2.png" id="2_tgmmo"]
+[ext_resource type="PackedScene" uid="uid://wanlt82saimp" path="res://packedscenes/interactable.tscn" id="3_gwnuu"]
+[ext_resource type="Texture2D" uid="uid://cmggbtgfktdgg" path="res://sprites/For Items_Bell Flower.png" id="4_cm6ki"]
+[ext_resource type="Material" uid="uid://dgau5sbugs6qw" path="res://packedscenes/shaderMaterial.tres" id="5_dgyn0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cx3nm"]
+radius = 1.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7u4hs"]
 
@@ -271,6 +280,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0nwkf"]
 size = Vector2(55, 58)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_3lajn"]
+radius = 75.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5a08c"]
 size = Vector2(1242.75, 44.875)
 
@@ -289,14 +301,61 @@ b = Vector2(417, -234)
 [node name="Node2D" type="Node2D"]
 position = Vector2(531, 200)
 
+[node name="ForestClearing" type="Sprite2D" parent="."]
+z_index = -8
+position = Vector2(45, 124)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("1_rpea1")
+
+[node name="TreeOverlay" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(45, 124)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_tdw8f")
+
+[node name="Interactable2" parent="." instance=ExtResource("3_gwnuu")]
+position = Vector2(-443, 175)
+script = ExtResource("2_jn7h2")
+pickedFlowerSprite = null
+defaultSprite = ExtResource("4_cm6ki")
+collisionShape = SubResource("CircleShape2D_cx3nm")
+
+[node name="Interactable3" parent="." instance=ExtResource("3_gwnuu")]
+position = Vector2(-151, -34)
+script = ExtResource("2_jn7h2")
+pickedFlowerSprite = null
+defaultSprite = ExtResource("4_cm6ki")
+collisionShape = SubResource("CircleShape2D_cx3nm")
+
+[node name="Interactable" parent="." instance=ExtResource("3_gwnuu")]
+position = Vector2(-308, -21)
+script = ExtResource("2_jn7h2")
+pickedFlowerSprite = null
+defaultSprite = ExtResource("4_cm6ki")
+collisionShape = SubResource("CircleShape2D_cx3nm")
+
+[node name="Interactable4" parent="." instance=ExtResource("3_gwnuu")]
+position = Vector2(-285, 271)
+script = ExtResource("2_jn7h2")
+pickedFlowerSprite = null
+defaultSprite = ExtResource("4_cm6ki")
+collisionShape = SubResource("CircleShape2D_cx3nm")
+
+[node name="Interactable5" parent="." instance=ExtResource("3_gwnuu")]
+position = Vector2(36, 316)
+script = ExtResource("2_jn7h2")
+pickedFlowerSprite = null
+defaultSprite = ExtResource("4_cm6ki")
+collisionShape = SubResource("CircleShape2D_cx3nm")
+
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." node_paths=PackedStringArray("animationplayer")]
 position = Vector2(109, 61)
 scale = Vector2(2, 2)
 script = ExtResource("1_su4ak")
 animationplayer = NodePath("994f43c86d5b3Db1Fa95e57e85Dad5Fb1/AnimatedSprite2D")
+outlineShader = ExtResource("5_dgyn0")
 
 [node name="994f43c86d5b3Db1Fa95e57e85Dad5Fb1" type="AnimatedSprite2D" parent="CharacterBody2D"]
-position = Vector2(-29, 32)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_7u4hs")
 
@@ -313,8 +372,12 @@ animation = &"down"
 frame_progress = 0.0977771
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(-31.5, 32)
 shape = SubResource("RectangleShape2D_0nwkf")
+
+[node name="Area2D" type="Area2D" parent="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Area2D"]
+shape = SubResource("CircleShape2D_3lajn")
 
 [node name="Icon" type="StaticBody2D" parent="."]
 position = Vector2(372, 419)
@@ -334,3 +397,6 @@ shape = SubResource("SegmentShape2D_byd3s")
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Icon"]
 position = Vector2(-169, -384)
 shape = SubResource("SegmentShape2D_hwdg8")
+
+[connection signal="body_entered" from="CharacterBody2D/Area2D" to="CharacterBody2D" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="CharacterBody2D/Area2D" to="CharacterBody2D" method="_on_area_2d_body_exited"]

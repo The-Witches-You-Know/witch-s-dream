@@ -1,13 +1,21 @@
 extends CharacterBody2D
 @export var animationplayer:AnimatedSprite2D
 
+@export var outlineShader: ShaderMaterial
+
 const SPEED = 150.0
 const JUMP_VELOCITY = -400.0
 
 
+var interactablesInRange = []
+var inventory = {}
+var closestInteractable = null
+
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 
+func _ready():
+	outlineShader.set_shader_parameter("color", Color(randf(), randf(), randf(), 1.0))
 
 
 func _physics_process(_delta):
@@ -37,5 +45,57 @@ func _physics_process(_delta):
 	
 		
 	#velocity =  velocity.normalized() * min(velocity.length(), SPEED)
-
 	move_and_slide()
+	
+	refreshClosestInteractable()
+		
+	
+func _input(ev):
+	if ev is InputEventMouseButton and ev.button_index == MOUSE_BUTTON_LEFT and ev.pressed:
+		if (closestInteractable != null):
+			closestInteractable.onInteraction(self)
+	
+func addInteractables(interactable):
+	interactablesInRange.append(interactable)
+	refreshClosestInteractable()
+	
+func removeInteractables(interactable):
+	interactablesInRange.erase(interactablesInRange.filter(func(x): return x.position == interactable.position)[0])	
+	refreshClosestInteractable()
+	
+	
+func refreshClosestInteractable():	
+	var detectedClosestInteractable = getClosestInteractable()
+	if (detectedClosestInteractable != closestInteractable):
+		if (closestInteractable != null):
+			closestInteractable.conditionallySetOutlineVisibility(false)
+		if (detectedClosestInteractable != null):
+			detectedClosestInteractable.conditionallySetOutlineVisibility(true)
+		closestInteractable = detectedClosestInteractable
+	
+func getClosestInteractable():
+	var potentialClosestInteractable = null
+	var closestDistance = 99999999
+	for interactable in interactablesInRange:
+		var distance = self.position.distance_to(interactable.position)
+		if (closestDistance > distance):
+			closestDistance = distance
+			potentialClosestInteractable = interactable
+	return potentialClosestInteractable
+	
+func addToInventory(itemName, amount):
+	if itemName in inventory:
+		inventory[itemName] += amount
+	else:
+		inventory[itemName] = amount
+	print(inventory)
+
+
+func _on_area_2d_body_entered(body):
+	if (body.has_method("onTriggerEnter")):
+		body.onTriggerEnter(self)
+
+
+func _on_area_2d_body_exited(body):
+	if (body.has_method("onTriggerExit")):
+		body.onTriggerExit(self)
