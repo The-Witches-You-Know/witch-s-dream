@@ -31,14 +31,12 @@ func _physics_process(_delta):
 		
 	if directionupdown == -1:			
 		animationplayer.play("up" ,1,4)
-		
 	elif directionupdown == 1:
 		animationplayer.play("down",1,4)
-		
 	elif direction == 1:
 		animationplayer.play("right",1,4)
 	elif direction == -1:
-		animationplayer.play("left" , 1 , 4)
+		animationplayer.play("left",1,4)
 	elif velocity == Vector2(0,0):
 		animationplayer.stop()
 	

@@ -4,8 +4,8 @@ class_name Flower
 
 @export var pickedFlowerSprite: Texture2D
 
-
-var flowerQuantityRange = [0.75, 1.4]	
+#randomizes the amount of "flower" picked up
+var flowerQuantityRange = [1.0, 1.0]	
 
 # Flower gets picked
 func onInteractionTrigger(player):
@@ -13,6 +13,6 @@ func onInteractionTrigger(player):
 	$Area2D/Sprite.texture = pickedFlowerSprite
 	player.addToInventory(
 		"Flower",
-		randf_range(flowerQuantityRange[0], flowerQuantityRange[1])
+		randf_range(flowerQuantityRange[1], flowerQuantityRange[1])
 	)
 	$Collider.shape = null

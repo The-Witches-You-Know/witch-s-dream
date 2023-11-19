@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://uqs4apr8vx6x"
-path="res://.godot/imported/tree_overlay.png-07cb01d6290bb1dcd69fc86041e7a21a.ctex"
+uid="uid://b4qj54sdud60i"
+path="res://.godot/imported/clearing.png-e169ee11abb2ea327888e1c7ca2f3e39.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://backgrounds/tree_overlay.png"
-dest_files=["res://.godot/imported/tree_overlay.png-07cb01d6290bb1dcd69fc86041e7a21a.ctex"]
+source_file="res://backgrounds/clearing.png"
+dest_files=["res://.godot/imported/clearing.png-e169ee11abb2ea327888e1c7ca2f3e39.ctex"]
 
 [params]
 

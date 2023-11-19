@@ -3,11 +3,11 @@
 [ext_resource type="Texture2D" uid="uid://beaogivrl50mm" path="res://backgrounds/forest_clearing.jpg" id="1_rpea1"]
 [ext_resource type="Script" path="res://CharacterBody2D.gd" id="1_su4ak"]
 [ext_resource type="Script" path="res://scripts/interactables/flower.gd" id="2_jn7h2"]
-[ext_resource type="Texture2D" uid="uid://uqs4apr8vx6x" path="res://backgrounds/tree_overlay.png" id="2_tdw8f"]
 [ext_resource type="Texture2D" uid="uid://jtxfywhk4sp" path="res://994f43c86d5b3db1fa95e57e85dad5fb2.png" id="2_tgmmo"]
+[ext_resource type="Texture2D" uid="uid://b4qj54sdud60i" path="res://backgrounds/clearing.png" id="2_v1tum"]
 [ext_resource type="PackedScene" uid="uid://wanlt82saimp" path="res://packedscenes/interactable.tscn" id="3_gwnuu"]
 [ext_resource type="Texture2D" uid="uid://cmggbtgfktdgg" path="res://sprites/For Items_Bell Flower.png" id="4_cm6ki"]
-[ext_resource type="Material" uid="uid://dgau5sbugs6qw" path="res://packedscenes/shaderMaterial.tres" id="5_dgyn0"]
+[ext_resource type="Material" uid="uid://dgau5sbugs6qw" path="res://packedscenes/shaderMaterial.tres" id="7_86swl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cx3nm"]
 radius = 1.0
@@ -311,24 +311,30 @@ texture = ExtResource("1_rpea1")
 z_index = 2
 position = Vector2(45, 124)
 scale = Vector2(0.6, 0.6)
-texture = ExtResource("2_tdw8f")
+texture = ExtResource("2_v1tum")
 
 [node name="Interactable2" parent="." instance=ExtResource("3_gwnuu")]
-position = Vector2(-443, 175)
+position = Vector2(335, 271)
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("2_jn7h2")
 pickedFlowerSprite = null
 defaultSprite = ExtResource("4_cm6ki")
 collisionShape = SubResource("CircleShape2D_cx3nm")
 
 [node name="Interactable3" parent="." instance=ExtResource("3_gwnuu")]
-position = Vector2(-151, -34)
+position = Vector2(-152, 82)
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("2_jn7h2")
 pickedFlowerSprite = null
 defaultSprite = ExtResource("4_cm6ki")
 collisionShape = SubResource("CircleShape2D_cx3nm")
 
 [node name="Interactable" parent="." instance=ExtResource("3_gwnuu")]
-position = Vector2(-308, -21)
+position = Vector2(333, 40)
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("2_jn7h2")
 pickedFlowerSprite = null
 defaultSprite = ExtResource("4_cm6ki")
@@ -336,24 +342,28 @@ collisionShape = SubResource("CircleShape2D_cx3nm")
 
 [node name="Interactable4" parent="." instance=ExtResource("3_gwnuu")]
 position = Vector2(-285, 271)
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("2_jn7h2")
 pickedFlowerSprite = null
 defaultSprite = ExtResource("4_cm6ki")
 collisionShape = SubResource("CircleShape2D_cx3nm")
 
 [node name="Interactable5" parent="." instance=ExtResource("3_gwnuu")]
-position = Vector2(36, 316)
+position = Vector2(-424, -4)
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("2_jn7h2")
 pickedFlowerSprite = null
 defaultSprite = ExtResource("4_cm6ki")
 collisionShape = SubResource("CircleShape2D_cx3nm")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." node_paths=PackedStringArray("animationplayer")]
-position = Vector2(109, 61)
+position = Vector2(50, 350)
 scale = Vector2(2, 2)
 script = ExtResource("1_su4ak")
 animationplayer = NodePath("994f43c86d5b3Db1Fa95e57e85Dad5Fb1/AnimatedSprite2D")
-outlineShader = ExtResource("5_dgyn0")
+outlineShader = ExtResource("7_86swl")
 
 [node name="994f43c86d5b3Db1Fa95e57e85Dad5Fb1" type="AnimatedSprite2D" parent="CharacterBody2D"]
 scale = Vector2(1.5, 1.5)
@@ -377,6 +387,7 @@ shape = SubResource("RectangleShape2D_0nwkf")
 [node name="Area2D" type="Area2D" parent="CharacterBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Area2D"]
+scale = Vector2(0.6, 0.6)
 shape = SubResource("CircleShape2D_3lajn")
 
 [node name="Icon" type="StaticBody2D" parent="."]
