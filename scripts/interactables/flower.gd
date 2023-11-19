@@ -8,10 +8,9 @@ class_name Flower
 var flowerQuantityRange = [1.0, 1.0]
 
 func onReady():
-	if (SaveFile.saveData.has(self.identifier+".canInteract")):
-		if (SaveFile.saveData[self.identifier+".canInteract"] == false):
-			$Area2D/Sprite.texture = pickedFlowerSprite
-			self.canInteract = false;
+	if (SaveFile.safeGet(self.identifier+".canInteract", true) == false):
+		$Area2D/Sprite.texture = pickedFlowerSprite
+		self.canInteract = false;
 	else:
 		self.canInteract = true;
 		

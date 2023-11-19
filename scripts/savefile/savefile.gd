@@ -36,8 +36,8 @@ static func setOrPut(key, value):
 	SaveFile.saveData[key] = value
 	SaveFile.saveFile()
 	
-static func safeGet(key):
+static func safeGet(key, defaultValue):
 	if saveData.has(key):
 		return saveData[key]
-	return null
+	return defaultValue
 	

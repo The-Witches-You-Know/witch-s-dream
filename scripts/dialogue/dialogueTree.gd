@@ -21,7 +21,7 @@ static var dialogueTreeEntries = {
 					func (): SaveFile.setOrPut("DialogueTreeEntry.Test.ChoseOptionThree", true)
 				),
 				DialogueTreeOption.standardOption("Special finish dialogue by speaker, visible only to those who clicked option 3 at least once", 5).showOnCondition(
-					func ():SaveFile.safeGet("DialogueTreeEntry.Test.ChoseOptionThree")
+					func ():SaveFile.safeGet("DialogueTreeEntry.Test.ChoseOptionThree", false)
 				),
 			]
 		),

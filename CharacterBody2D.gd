@@ -11,34 +11,48 @@ var interactablesInRange = []
 var inventory = {}
 var closestInteractable = null
 
+var potentialPatrons = ["Fey", "Fiend", "Eldritch", "Coven"]
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 
 func _ready():
-	outlineShader.set_shader_parameter("color", Color(randf(), randf(), randf(), 1.0))
-	if SaveFile.saveData.has("Player.Inventory"):
-		inventory = SaveFile.saveData["Player.Inventory"]
-		print(inventory)
+	var patron = potentialPatrons[randi() % len(potentialPatrons)]
+	print(patron)
+	var outlineColor = null
+	match patron:
+		"Fey":
+			outlineColor = Color(0.5,1.0,0.7,1.0)
+		"Fiend":
+			outlineColor = Color(0.9,0.5,0.6,1.0)
+		"Eldritch":
+			outlineColor = Color(0.5, 0.7, 1.0, 1.0)
+		"Coven":
+			outlineColor = Color(0.6,0.4,0.8,1.0)
+		_:
+			outlineColor = Color(1.0,1.0,1.0,1.0)
+	outlineShader.set_shader_parameter("color", outlineColor)
+
+	inventory = SaveFile.safeGet("Player.Inventory", [])
+	print(inventory)
+	SaveFile.setOrPut("Player.Patron", patron)
 
 
 func _physics_process(_delta):
 	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction = Input.get_axis("character_left", "character_right",)
-	var directionupdown = Input.get_axis ("character_up" , "character_down")
-	var input_direction = Input.get_vector("character_left", "character_right", "character_up", "character_down")
-	velocity = input_direction * SPEED
-	
-	
+	var inputX = Input.get_axis("character_left", "character_right",)
+	var inputY = Input.get_axis ("character_up" , "character_down")
+	var input_direction = Vector2(inputX, inputY)
+	velocity = input_direction.normalized() * SPEED	
 		
-	if directionupdown == -1:			
+	if inputY == -1:			
 		animationplayer.play("up" ,1,4)
-	elif directionupdown == 1:
+	elif inputY == 1:
 		animationplayer.play("down",1,4)
-	elif direction == 1:
+	elif inputX == 1:
 		animationplayer.play("right",1,4)
-	elif direction == -1:
+	elif inputX == -1:
 		animationplayer.play("left",1,4)
 	elif velocity == Vector2(0,0):
 		animationplayer.stop()
