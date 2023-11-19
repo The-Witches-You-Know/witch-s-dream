@@ -9,6 +9,7 @@ class_name Interactable
 # set to false when player cannot interact with this entity
 @onready var canInteract = true
 
+# assign default sprite, collision shape, and trigger everything tied to the children class's onReady function
 func _ready():
 	$Area2D/Sprite.texture = defaultSprite
 	$Collider.shape = collisionShape

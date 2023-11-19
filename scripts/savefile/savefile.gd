@@ -31,11 +31,15 @@ static func saveFile():
 	
 static func calculateChecksum(saveData):
 	return JSON.stringify(saveData).md5_text()
-		
+
+
+# Use this function to set any new value into the save file
 static func setOrPut(key, value):
 	SaveFile.saveData[key] = value
 	SaveFile.saveFile()
 	
+# Use this function to safely retrieve any value from the save file.
+# Supply a default value in case info cannot be found.
 static func safeGet(key, defaultValue):
 	if saveData.has(key):
 		return saveData[key]

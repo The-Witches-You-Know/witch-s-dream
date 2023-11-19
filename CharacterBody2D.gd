@@ -17,7 +17,6 @@ var potentialPatrons = ["Fey", "Fiend", "Eldritch", "Coven"]
 
 func _ready():
 	var patron = potentialPatrons[randi() % len(potentialPatrons)]
-	print(patron)
 	var outlineColor = null
 	match patron:
 		"Fey":
@@ -33,7 +32,6 @@ func _ready():
 	outlineShader.set_shader_parameter("color", outlineColor)
 
 	inventory = SaveFile.safeGet("Player.Inventory", [])
-	print(inventory)
 	SaveFile.setOrPut("Player.Patron", patron)
 
 
@@ -41,7 +39,7 @@ func _physics_process(_delta):
 	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var inputX = Input.get_axis("character_left", "character_right",)
+	var inputX = Input.get_axis("character_left", "character_right")
 	var inputY = Input.get_axis ("character_up" , "character_down")
 	var input_direction = Vector2(inputX, inputY)
 	velocity = input_direction.normalized() * SPEED	
@@ -56,13 +54,10 @@ func _physics_process(_delta):
 		animationplayer.play("left",1,4)
 	elif velocity == Vector2(0,0):
 		animationplayer.stop()
-	
-	
 		
-	#velocity =  velocity.normalized() * min(velocity.length(), SPEED)
 	move_and_slide()
-	
-	refreshClosestInteractable()
+	if (velocity != Vector2(0,0) && len(interactablesInRange) > 1):	
+		refreshClosestInteractable()
 		
 	
 func _input(ev):
@@ -80,8 +75,11 @@ func removeInteractables(interactable):
 		interactablesInRange.erase(candidateInteractables[0])	
 	refreshClosestInteractable()
 	
-	
-func refreshClosestInteractable():	
+
+# as list of interactables in range changes and as player moves around the screen,
+# different interactables will be the closest to him. This function keeps tabs on what interactable,
+# if any, are the closest to the player, and still within interaction range.
+func refreshClosestInteractable():
 	var detectedClosestInteractable = getClosestInteractable()
 	if (detectedClosestInteractable != closestInteractable):
 		if (closestInteractable != null):
@@ -89,7 +87,8 @@ func refreshClosestInteractable():
 		if (detectedClosestInteractable != null):
 			detectedClosestInteractable.conditionallySetOutlineVisibility(true)
 		closestInteractable = detectedClosestInteractable
-	
+
+# this function calculates which interactable among the interactables in range is the closest.	
 func getClosestInteractable():
 	var potentialClosestInteractable = null
 	var closestDistance = 99999999
@@ -100,6 +99,7 @@ func getClosestInteractable():
 			potentialClosestInteractable = interactable
 	return potentialClosestInteractable
 	
+
 func addToInventory(itemName, amount):
 	if itemName in inventory:
 		inventory[itemName] += amount
@@ -108,11 +108,14 @@ func addToInventory(itemName, amount):
 	SaveFile.setOrPut("Player.Inventory", inventory)
 
 
+# this function triggers if an interactable object enters the player's area
 func _on_area_2d_area_entered(area):
 	if (area.get_parent().has_method("onTriggerEnter")):
 		area.get_parent().onTriggerEnter(self)
 
 
+# this function triggers if an interactable object exits the player's area
+# or is no longer interactable
 func _on_area_2d_area_exited(area):
 	if (area.get_parent().has_method("onTriggerExit")):
 		area.get_parent().onTriggerExit(self)
