@@ -381,22 +381,22 @@ shape = SubResource("RectangleShape2D_0nwkf")
 scale = Vector2(0.6, 0.6)
 shape = SubResource("CircleShape2D_3lajn")
 
-[node name="Icon" type="StaticBody2D" parent="."]
+[node name="BoundingBox" type="StaticBody2D" parent="."]
 position = Vector2(372, 419)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Icon"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoundingBox"]
 position = Vector2(-335, 51)
 shape = SubResource("RectangleShape2D_5a08c")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Icon"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="BoundingBox"]
 position = Vector2(-609, -271)
 shape = SubResource("SegmentShape2D_k3nma")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Icon"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="BoundingBox"]
 position = Vector2(-610, -270)
 shape = SubResource("SegmentShape2D_byd3s")
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="Icon"]
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="BoundingBox"]
 position = Vector2(-169, -384)
 shape = SubResource("SegmentShape2D_hwdg8")
 
