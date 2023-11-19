@@ -16,10 +16,9 @@ var closestInteractable = null
 
 func _ready():
 	outlineShader.set_shader_parameter("color", Color(randf(), randf(), randf(), 1.0))
-	SaveFile.loadFile()
-	inventory = SaveFile.saveData["Player.Inventory"]
-	print(inventory)
-	print(SaveFile.saveData)
+	if SaveFile.saveData.has("Player.Inventory"):
+		inventory = SaveFile.saveData["Player.Inventory"]
+		print(inventory)
 
 
 func _physics_process(_delta):

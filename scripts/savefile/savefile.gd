@@ -1,7 +1,12 @@
+extends Node
+
 class_name SaveFile
 
 static var config = ConfigFile.new()
 static var saveData = {}
+
+func _ready():
+	loadFile()
 
 # this function reads all the saved data, and clears the save file if it has been altered or corrupted.
 static func loadFile():
