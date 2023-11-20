@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://do2clar5jx0l3"]
+[gd_scene load_steps=49 format=3 uid="uid://do2clar5jx0l3"]
 
 [ext_resource type="Texture2D" uid="uid://beaogivrl50mm" path="res://backgrounds/forest_clearing.jpg" id="1_rpea1"]
 [ext_resource type="Script" path="res://CharacterBody2D.gd" id="1_su4ak"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://b4qj54sdud60i" path="res://backgrounds/clearing.png" id="2_v1tum"]
 [ext_resource type="PackedScene" uid="uid://wanlt82saimp" path="res://packedscenes/interactable.tscn" id="3_gwnuu"]
 [ext_resource type="Texture2D" uid="uid://cmggbtgfktdgg" path="res://sprites/For Items_Bell Flower.png" id="4_cm6ki"]
+[ext_resource type="Texture2D" uid="uid://dyid8uxrfnbnj" path="res://sprites/For Items_Freesia.png" id="6_64aht"]
 [ext_resource type="Material" uid="uid://dgau5sbugs6qw" path="res://packedscenes/shaderMaterial.tres" id="7_86swl"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7u4hs"]
@@ -346,7 +347,7 @@ identifier = "Flower4"
 position = Vector2(107, 196)
 script = ExtResource("2_jn7h2")
 pickedFlowerSprite = null
-defaultSprite = ExtResource("4_cm6ki")
+defaultSprite = ExtResource("6_64aht")
 identifier = "Flower5"
 
 [node name="Player" type="CharacterBody2D" parent="." node_paths=PackedStringArray("animationplayer")]
