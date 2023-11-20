@@ -328,6 +328,7 @@ script = ExtResource("2_jn7h2")
 pickedFlowerSprite = null
 defaultSprite = ExtResource("4_cm6ki")
 identifier = "Flower2"
+testVariable = null
 
 [node name="Interactable" parent="Interactables" instance=ExtResource("3_gwnuu")]
 position = Vector2(864, 240)
@@ -343,6 +344,7 @@ script = ExtResource("2_jn7h2")
 pickedFlowerSprite = null
 defaultSprite = ExtResource("4_cm6ki")
 identifier = "Flower4"
+testVariable = null
 
 [node name="Interactable5" parent="Interactables" instance=ExtResource("3_gwnuu")]
 position = Vector2(107, 196)
