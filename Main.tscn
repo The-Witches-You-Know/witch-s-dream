@@ -320,7 +320,7 @@ script = ExtResource("2_jn7h2")
 pickedFlowerSprite = null
 defaultSprite = ExtResource("4_cm6ki")
 identifier = "Flower1"
-testVariable = "Test123"
+testVariable2 = "124"
 
 [node name="Interactable3" parent="Interactables" instance=ExtResource("3_gwnuu")]
 position = Vector2(379, 282)
@@ -328,7 +328,6 @@ script = ExtResource("2_jn7h2")
 pickedFlowerSprite = null
 defaultSprite = ExtResource("4_cm6ki")
 identifier = "Flower2"
-testVariable = null
 
 [node name="Interactable" parent="Interactables" instance=ExtResource("3_gwnuu")]
 position = Vector2(864, 240)
@@ -336,7 +335,7 @@ script = ExtResource("2_jn7h2")
 pickedFlowerSprite = null
 defaultSprite = ExtResource("4_cm6ki")
 identifier = "Flower3"
-testVariable = "test124"
+testVariable2 = "1888"
 
 [node name="Interactable4" parent="Interactables" instance=ExtResource("3_gwnuu")]
 position = Vector2(246, 471)
@@ -344,7 +343,6 @@ script = ExtResource("2_jn7h2")
 pickedFlowerSprite = null
 defaultSprite = ExtResource("4_cm6ki")
 identifier = "Flower4"
-testVariable = null
 
 [node name="Interactable5" parent="Interactables" instance=ExtResource("3_gwnuu")]
 position = Vector2(107, 196)
@@ -352,7 +350,7 @@ script = ExtResource("2_jn7h2")
 pickedFlowerSprite = null
 defaultSprite = ExtResource("4_cm6ki")
 identifier = "Flower5"
-testVariable = "test128"
+testVariable2 = "dog"
 
 [node name="Player" type="CharacterBody2D" parent="." node_paths=PackedStringArray("animationplayer")]
 position = Vector2(50, 350)
