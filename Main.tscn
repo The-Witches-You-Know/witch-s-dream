@@ -319,8 +319,8 @@ texture = ExtResource("2_v1tum")
 position = Vector2(866, 471)
 script = ExtResource("2_jn7h2")
 pickedFlowerSprite = null
-defaultSprite = ExtResource("4_cm6ki")
-identifier = "Flower1"
+defaultSprite = ExtResource("6_64aht")
+identifier = "Flower1234"
 
 [node name="Interactable3" parent="Interactables" instance=ExtResource("3_gwnuu")]
 position = Vector2(379, 282)
@@ -333,7 +333,7 @@ identifier = "Flower2"
 position = Vector2(864, 240)
 script = ExtResource("2_jn7h2")
 pickedFlowerSprite = null
-defaultSprite = ExtResource("4_cm6ki")
+defaultSprite = ExtResource("6_64aht")
 identifier = "Flower3"
 
 [node name="Interactable4" parent="Interactables" instance=ExtResource("3_gwnuu")]
@@ -347,7 +347,7 @@ identifier = "Flower4"
 position = Vector2(107, 196)
 script = ExtResource("2_jn7h2")
 pickedFlowerSprite = null
-defaultSprite = ExtResource("6_64aht")
+defaultSprite = ExtResource("4_cm6ki")
 identifier = "Flower5"
 
 [node name="Player" type="CharacterBody2D" parent="." node_paths=PackedStringArray("animationplayer")]
