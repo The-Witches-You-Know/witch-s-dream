@@ -31,7 +31,7 @@ func _ready():
 			outlineColor = Color(1.0,1.0,1.0,1.0)
 	outlineShader.set_shader_parameter("color", outlineColor)
 
-	inventory = SaveFile.safeGet("Player.Inventory", [])
+	inventory = SaveFile.safeGet("Player.Inventory", {})
 	SaveFile.setOrPut("Player.Patron", patron)
 
 
