@@ -5,6 +5,7 @@ class_name Interactable
 @export var defaultSprite: Texture2D
 @export var collisionShape: Shape2D
 @export var identifier: String
+@export var testVariable: String
 
 # set to false when player cannot interact with this entity
 @onready var canInteract = true
@@ -14,6 +15,7 @@ func _ready():
 	$Area2D/Sprite.texture = defaultSprite
 	$Collider.shape = collisionShape
 	onReady()
+	print(testVariable)
 
 # run this when player enters TriggerArea and is the closest to this specific interactable
 func onTriggerEnter(player):
