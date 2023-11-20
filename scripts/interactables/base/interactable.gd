@@ -5,6 +5,7 @@ class_name Interactable
 @export var defaultSprite: Texture2D
 @export var collisionShape: Shape2D
 @export var identifier: String
+@export var testVariable: String
 
 # set to false when player cannot interact with this entity
 @onready var canInteract = true
