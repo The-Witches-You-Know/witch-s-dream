@@ -6,7 +6,7 @@ static var config = ConfigFile.new()
 static var saveData = {}
 
 func _ready():
-	loadFile()
+	SaveFile.loadFile()
 
 # this function reads all the saved data, and clears the save file if it has been altered or corrupted.
 static func loadFile():
@@ -29,8 +29,8 @@ static func saveFile():
 		config.set_value("savefile", "checksum", calculateChecksum(saveData))
 	config.save("user://savefile.cfg")
 	
-static func calculateChecksum(saveData):
-	return JSON.stringify(saveData).md5_text()
+static func calculateChecksum(_saveData):
+	return JSON.stringify(_saveData).md5_text()
 
 
 # Use this function to set any new value into the save file

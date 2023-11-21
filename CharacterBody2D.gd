@@ -36,28 +36,28 @@ func _ready():
 
 
 func _physics_process(_delta):
-	
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var inputX = Input.get_axis("character_left", "character_right")
-	var inputY = Input.get_axis ("character_up" , "character_down")
-	var input_direction = Vector2(inputX, inputY)
-	velocity = input_direction.normalized() * SPEED	
-		
-	if inputY == -1:			
-		animationplayer.play("up" ,1,4)
-	elif inputY == 1:
-		animationplayer.play("down",1,4)
-	elif inputX == 1:
-		animationplayer.play("right",1,4)
-	elif inputX == -1:
-		animationplayer.play("left",1,4)
-	elif velocity == Vector2(0,0):
-		animationplayer.stop()
-		
-	move_and_slide()
-	if (velocity != Vector2(0,0) && len(interactablesInRange) > 1):	
-		refreshClosestInteractable()
+	if !$"../DialogueBox".visible:
+		# Get the input direction and handle the movement/deceleration.
+		# As good practice, you should replace UI actions with custom gameplay actions.
+		var inputX = Input.get_axis("character_left", "character_right")
+		var inputY = Input.get_axis ("character_up" , "character_down")
+		var input_direction = Vector2(inputX, inputY)
+		velocity = input_direction.normalized() * SPEED	
+			
+		if inputY == -1:			
+			animationplayer.play("up" ,1,4)
+		elif inputY == 1:
+			animationplayer.play("down",1,4)
+		elif inputX == 1:
+			animationplayer.play("right",1,4)
+		elif inputX == -1:
+			animationplayer.play("left",1,4)
+		elif velocity == Vector2(0,0):
+			animationplayer.stop()
+			
+		move_and_slide()
+		if (velocity != Vector2(0,0) && len(interactablesInRange) > 1):	
+			refreshClosestInteractable()
 		
 	
 func _input(ev):

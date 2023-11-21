@@ -4,14 +4,11 @@ static var dialogueTreeEntries = {
 	"Test": [
 		DialogueTreeEntry.monologue(
 			"This is a test for the dialogue entry system. \nHere, you should be able to just click anywhere to proceed",1
-		).addCallback(
+		).addDefaultCallback(
 			func (): SaveFile.setOrPut("DialogueTreeEntry.Test.NextOpeningLineIndex", 3)
 		),
 		DialogueTreeEntry.multiOption(
-			"This is another entry for the system. Here, you should be able to see 3 options, \n
-			1 of them looping, \n
-			1 of them prompting the speaker to end dialogue, and \n
-			1 of them finishing the dialogue instantly",
+			"This is another entry for the system. Here, you should be able to see 3 options, one looping, one prompting to end dialogue, and one finishing dialogue instantly",
 			[
 				DialogueTreeOption.standardOption("Here we do a loop", 1),
 				DialogueTreeOption.standardOption("Would you kindly finish dialogue?", 2).addCallback(
@@ -21,16 +18,16 @@ static var dialogueTreeEntries = {
 					func (): SaveFile.setOrPut("DialogueTreeEntry.Test.ChoseOptionThree", true)
 				),
 				DialogueTreeOption.standardOption("Special finish dialogue by speaker, visible only to those who clicked option 3 at least once", 5).showOnCondition(
-					func ():SaveFile.safeGet("DialogueTreeEntry.Test.ChoseOptionThree", false)
+					func (): return SaveFile.safeGet("DialogueTreeEntry.Test.ChoseOptionThree", false)
 				),
 			]
 		),
 		DialogueTreeEntry.finish("Test dialogue tree, signing off. Have a nice day!"),
-		DialogueTreeEntry.monologue("Here is a test for starting new dialogue for the same speaker. \n it will advance to the 3 options just like before.", 1).addCallback(
+		DialogueTreeEntry.monologue("Here is a test for starting new dialogue for the same speaker. It will advance to the 3 options just like before.", 1).addDefaultCallback(
 			func (): SaveFile.setOrPut("DialogueTreeEntry.Test.NextOpeningLineIndex", 3)
 		),
-		DialogueTreeEntry.monologue("Here is a special line for folks selecting option 2 in the multi-option dialogue tree entry. \n it will advance to the 3 options just like before.", 1).addCallback(
-			func (): SaveFile.setOrPut("DialogueTreeEntry.Test.NextOpeningLineIndex", 3)
+		DialogueTreeEntry.monologue("Here is a special line for folks selecting option 2 in the multi-option dialogue tree entry. It will advance to the 3 options just like before and reset the starting line.", 1).addDefaultCallback(
+			func (): SaveFile.setOrPut("DialogueTreeEntry.Test.NextOpeningLineIndex", 0)
 		),
 		DialogueTreeEntry.finish("Special finish dialogue triggered. Finishing dialogue..."),
 		
