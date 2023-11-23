@@ -9,6 +9,7 @@ static func monologue(_dialogueLine: String, _nextLineIndex: int):
 	entry.dialogueLine = _dialogueLine
 	entry.dialogueOptions.append(DialogueTreeOption.goToLine(_nextLineIndex))
 	return entry	
+	
 
 # dialogue tree entry for speaker-prompted dialogue finish
 static func finish(_dialogueLine: String):

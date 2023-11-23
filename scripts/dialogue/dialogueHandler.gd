@@ -1,4 +1,5 @@
 extends CanvasGroup
+class_name DialogueHandler
 
 var currentDialogueTree = null
 var currentDialogueTreeEntry = null

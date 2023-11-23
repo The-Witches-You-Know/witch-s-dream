@@ -3,6 +3,8 @@ extends CharacterBody2D
 
 @export var outlineShader: ShaderMaterial
 
+@export var dialogueBox: DialogueHandler
+
 const SPEED = 150.0
 const JUMP_VELOCITY = -400.0
 
@@ -119,3 +121,10 @@ func _on_area_2d_area_entered(area):
 func _on_area_2d_area_exited(area):
 	if (area.get_parent().has_method("onTriggerExit")):
 		area.get_parent().onTriggerExit(self)
+		
+func startDialogue(dialogueName, interactableReference):
+		dialogueBox.openDialogueBox(dialogueName, 0)
+		
+
+		
+		

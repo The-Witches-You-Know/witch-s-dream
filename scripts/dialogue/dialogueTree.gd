@@ -31,5 +31,13 @@ static var dialogueTreeEntries = {
 		),
 		DialogueTreeEntry.finish("Special finish dialogue triggered. Finishing dialogue..."),
 		
+	],
+	"Deer":[
+		DialogueTreeEntry.monologue( 
+			"test" ,1
+		).addDefaultCallback(
+			func (): SaveFile.setOrPut("DialogueTreeEntry.Deer.NextOpeningLineIndex",1)
+		)
 	]
+	
 }

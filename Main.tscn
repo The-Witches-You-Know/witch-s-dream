@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://do2clar5jx0l3"]
+[gd_scene load_steps=56 format=3 uid="uid://do2clar5jx0l3"]
 
 [ext_resource type="Texture2D" uid="uid://beaogivrl50mm" path="res://backgrounds/forest_clearing.jpg" id="1_rpea1"]
 [ext_resource type="Script" path="res://CharacterBody2D.gd" id="1_su4ak"]
@@ -13,6 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://cvdg0xwvh1j7d" path="res://sprites/dialogue option panel.png" id="10_7523i"]
 [ext_resource type="PackedScene" uid="uid://dpn3yycnujsm5" path="res://packedscenes/dialogue_option.tscn" id="10_a7co6"]
 [ext_resource type="Texture2D" uid="uid://d3trt17hd66lk" path="res://sprites/ferret.png" id="10_r6mbt"]
+[ext_resource type="Script" path="res://scripts/interactables/deer.gd" id="14_350qi"]
+[ext_resource type="Texture2D" uid="uid://ps1ghvwb0nxw" path="res://sprites/zy0ne17e3qla12.png" id="14_r3a4n"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7u4hs"]
 
@@ -357,12 +359,13 @@ pickedFlowerSprite = null
 defaultSprite = ExtResource("4_cm6ki")
 identifier = "Flower5"
 
-[node name="Player" type="CharacterBody2D" parent="." node_paths=PackedStringArray("animationplayer")]
+[node name="Player" type="CharacterBody2D" parent="." node_paths=PackedStringArray("animationplayer", "dialogueBox")]
 position = Vector2(50, 350)
 scale = Vector2(2, 2)
 script = ExtResource("1_su4ak")
 animationplayer = NodePath("PlayerSprite/AnimatedSprite2D")
 outlineShader = ExtResource("7_86swl")
+dialogueBox = NodePath("../DialogueBox")
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="Player"]
 scale = Vector2(1.5, 1.5)
@@ -386,6 +389,7 @@ shape = SubResource("RectangleShape2D_0nwkf")
 [node name="PlayerTriggerArea" type="Area2D" parent="Player"]
 
 [node name="TriggerShape" type="CollisionShape2D" parent="Player/PlayerTriggerArea"]
+position = Vector2(-0.5, 0)
 scale = Vector2(0.6, 0.6)
 shape = SubResource("CircleShape2D_3lajn")
 
@@ -497,6 +501,12 @@ offset_right = 825.0
 offset_bottom = 450.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("10_r6mbt")
+
+[node name="Deer" parent="." instance=ExtResource("3_gwnuu")]
+position = Vector2(24, -39)
+scale = Vector2(0.02, 0.02)
+script = ExtResource("14_350qi")
+defaultSprite = ExtResource("14_r3a4n")
 
 [connection signal="area_entered" from="Player/PlayerTriggerArea" to="Player" method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Player/PlayerTriggerArea" to="Player" method="_on_area_2d_area_exited"]
