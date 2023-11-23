@@ -37,7 +37,9 @@ static var dialogueTreeEntries = {
 			"test" ,1
 		).addDefaultCallback(
 			func (): SaveFile.setOrPut("DialogueTreeEntry.Deer.NextOpeningLineIndex",1)
-		)
+			
+		),
+		DialogueTreeEntry.finish("test succssfull"),
 	]
 	
 }
