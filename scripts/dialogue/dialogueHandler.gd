@@ -4,7 +4,7 @@ class_name DialogueHandler
 var currentDialogueTree = null
 var currentDialogueTreeEntry = null
 var isPrintingOutText = false
-
+var justOpened = false
 var dialogueOptions = []
 
 var expectedDialogueOptionsPositions = [
@@ -25,6 +25,7 @@ func _ready():
 # When starting dialogue, pick out correct dialogue tree and start at correct line
 func openDialogueBox(dialogueTreeName, openingLineIndex):
 	self.visible = true
+	self.justOpened = true
 	self.currentDialogueTree = DialogueTree.dialogueTreeEntries[dialogueTreeName]
 	self.currentDialogueTreeEntry = currentDialogueTree[openingLineIndex]
 	$MainTextPanel/SpeakerNameLabel.text = dialogueTreeName
@@ -40,7 +41,7 @@ func hideDialogueBox():
 
 func _unhandled_input(event):
 	if is_visible():
-		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			if isPrintingOutText:
 				printOutText()
 				onTextFullyPrintedOut()
@@ -50,6 +51,8 @@ func _unhandled_input(event):
 						onOptionSelection(0)
 				else:
 					hideDialogueBox()
+			print("huyh")
+			self.justOpened = false
 
 # trigger once text is fully inside the dialogue box		
 func onTextFullyPrintedOut():

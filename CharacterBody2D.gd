@@ -63,7 +63,7 @@ func _physics_process(_delta):
 		
 	
 func _input(ev):
-	if ev is InputEventMouseButton and ev.button_index == MOUSE_BUTTON_LEFT and ev.pressed:
+	if ev is InputEventMouseButton and ev.button_index == MOUSE_BUTTON_LEFT and ev.pressed && !$"../DialogueBox".visible:
 		if (closestInteractable != null):
 			closestInteractable.onInteraction(self)
 	
