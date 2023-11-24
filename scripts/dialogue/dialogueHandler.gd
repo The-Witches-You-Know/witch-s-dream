@@ -51,7 +51,6 @@ func _unhandled_input(event):
 						onOptionSelection(0)
 				else:
 					hideDialogueBox()
-			print("huyh")
 			self.justOpened = false
 
 # trigger once text is fully inside the dialogue box		
