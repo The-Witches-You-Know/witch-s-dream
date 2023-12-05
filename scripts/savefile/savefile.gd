@@ -41,7 +41,7 @@ static func setOrPut(key, value):
 # Use this function to safely retrieve any value from the save file.
 # Supply a default value in case info cannot be found.
 static func safeGet(key, defaultValue):
-	if saveData.has(key):
+	if saveData != null and saveData.has(key):
 		return saveData[key]
 	return defaultValue
 	

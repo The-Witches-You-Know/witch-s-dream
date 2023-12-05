@@ -1,13 +1,18 @@
+@tool
 extends StaticBody2D
 
 class_name Interactable
 
-@export var defaultSprite: Texture2D
+@export var defaultSprite: Texture2D = null : set = setTexture
 @export var collisionShape: Shape2D
 @export var identifier: String
 
 # set to false when player cannot interact with this entity
 @onready var canInteract = true
+
+func setTexture(newTexture):
+	defaultSprite = newTexture
+	$Area2D/Sprite.texture = defaultSprite
 
 # assign default sprite, collision shape, and trigger everything tied to the children class's onReady function
 func _ready():

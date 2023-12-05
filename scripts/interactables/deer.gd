@@ -1,3 +1,4 @@
+@tool
 extends Interactable
 
 func onInteraction(player):

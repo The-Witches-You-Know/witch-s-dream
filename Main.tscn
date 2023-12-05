@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://do2clar5jx0l3"]
+[gd_scene load_steps=60 format=3 uid="uid://do2clar5jx0l3"]
 
 [ext_resource type="Texture2D" uid="uid://beaogivrl50mm" path="res://backgrounds/forest_clearing.jpg" id="1_rpea1"]
 [ext_resource type="Script" path="res://CharacterBody2D.gd" id="1_su4ak"]
@@ -6,8 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://jtxfywhk4sp" path="res://994f43c86d5b3db1fa95e57e85dad5fb2.png" id="2_tgmmo"]
 [ext_resource type="Texture2D" uid="uid://b4qj54sdud60i" path="res://backgrounds/clearing.png" id="2_v1tum"]
 [ext_resource type="PackedScene" uid="uid://wanlt82saimp" path="res://packedscenes/interactable.tscn" id="3_gwnuu"]
-[ext_resource type="Texture2D" uid="uid://cmggbtgfktdgg" path="res://sprites/For Items_Bell Flower.png" id="4_cm6ki"]
+[ext_resource type="Texture2D" uid="uid://cs5g4m452so8g" path="res://sprites/flowers/Flower001.png" id="5_yx7fe"]
+[ext_resource type="Texture2D" uid="uid://cgw8x8tb1lymf" path="res://sprites/flowers/Flower002.png" id="6_qs75j"]
 [ext_resource type="Material" uid="uid://dgau5sbugs6qw" path="res://packedscenes/shaderMaterial.tres" id="7_86swl"]
+[ext_resource type="Texture2D" uid="uid://b48cd2hb6th8x" path="res://sprites/flowers/Flower003.png" id="7_sjcmw"]
+[ext_resource type="Texture2D" uid="uid://bp06h2hurg50v" path="res://sprites/flowers/Flower004.png" id="8_ihqtd"]
+[ext_resource type="Texture2D" uid="uid://iiqibowbnr3c" path="res://sprites/flowers/Flower005.png" id="9_6qtjw"]
 [ext_resource type="Script" path="res://scripts/dialogue/dialogueHandler.gd" id="9_a75yn"]
 [ext_resource type="Texture2D" uid="uid://biv7nh7ehpe04" path="res://sprites/dialogue box panel.png" id="9_abr23"]
 [ext_resource type="Texture2D" uid="uid://cvdg0xwvh1j7d" path="res://sprites/dialogue option panel.png" id="10_7523i"]
@@ -328,35 +332,35 @@ texture = ExtResource("2_v1tum")
 position = Vector2(335, 271)
 script = ExtResource("2_jn7h2")
 pickedFlowerSprite = null
-defaultSprite = ExtResource("4_cm6ki")
+defaultSprite = ExtResource("6_qs75j")
 identifier = "Flower1"
 
 [node name="Interactable3" parent="Interactables" instance=ExtResource("3_gwnuu")]
 position = Vector2(-152, 82)
 script = ExtResource("2_jn7h2")
 pickedFlowerSprite = null
-defaultSprite = ExtResource("4_cm6ki")
+defaultSprite = ExtResource("7_sjcmw")
 identifier = "Flower2"
 
 [node name="Interactable" parent="Interactables" instance=ExtResource("3_gwnuu")]
 position = Vector2(333, 40)
 script = ExtResource("2_jn7h2")
 pickedFlowerSprite = null
-defaultSprite = ExtResource("4_cm6ki")
+defaultSprite = ExtResource("5_yx7fe")
 identifier = "Flower3"
 
 [node name="Interactable4" parent="Interactables" instance=ExtResource("3_gwnuu")]
 position = Vector2(-285, 271)
 script = ExtResource("2_jn7h2")
 pickedFlowerSprite = null
-defaultSprite = ExtResource("4_cm6ki")
+defaultSprite = ExtResource("8_ihqtd")
 identifier = "Flower4"
 
 [node name="Interactable5" parent="Interactables" instance=ExtResource("3_gwnuu")]
 position = Vector2(-424, -4)
 script = ExtResource("2_jn7h2")
 pickedFlowerSprite = null
-defaultSprite = ExtResource("4_cm6ki")
+defaultSprite = ExtResource("9_6qtjw")
 identifier = "Flower5"
 
 [node name="Player" type="CharacterBody2D" parent="." node_paths=PackedStringArray("animationplayer", "dialogueBox")]
