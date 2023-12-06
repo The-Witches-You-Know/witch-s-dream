@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://do2clar5jx0l3"]
+[gd_scene load_steps=64 format=3 uid="uid://do2clar5jx0l3"]
 
 [ext_resource type="Texture2D" uid="uid://beaogivrl50mm" path="res://backgrounds/forest_clearing.jpg" id="1_rpea1"]
 [ext_resource type="Script" path="res://CharacterBody2D.gd" id="1_su4ak"]
@@ -293,6 +293,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_3lajn"]
 radius = 75.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_y7edi"]
+radius = 27.5726
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5a08c"]
 size = Vector2(460, 44.875)
 
@@ -371,7 +374,7 @@ identifier = "Flower5"
 [node name="Player" type="CharacterBody2D" parent="." node_paths=PackedStringArray("animationplayer", "dialogueBox")]
 position = Vector2(50, 350)
 scale = Vector2(2, 2)
-collision_mask = 13
+collision_mask = 9
 script = ExtResource("1_su4ak")
 animationplayer = NodePath("PlayerSprite/AnimatedSprite2D")
 outlineShader = ExtResource("7_86swl")
@@ -404,6 +407,12 @@ collision_mask = 2
 position = Vector2(-0.5, 0)
 scale = Vector2(0.6, 0.6)
 shape = SubResource("CircleShape2D_3lajn")
+
+[node name="TempAreaTrigger" type="Area2D" parent="Player"]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/TempAreaTrigger"]
+shape = SubResource("CircleShape2D_y7edi")
 
 [node name="BoundingBox" type="StaticBody2D" parent="."]
 position = Vector2(372, 419)
@@ -527,7 +536,7 @@ script = ExtResource("14_350qi")
 defaultSprite = ExtResource("14_r3a4n")
 
 [node name="NewArea" parent="." instance=ExtResource("20_g5xpi")]
-position = Vector2(43, 452)
+position = Vector2(65, 199)
 scale = Vector2(11.1916, -2.44544)
 next_scene = ExtResource("21_r08me")
 
