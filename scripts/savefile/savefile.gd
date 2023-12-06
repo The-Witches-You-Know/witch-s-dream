@@ -17,7 +17,7 @@ static func loadFile():
 			saveData[entry] = config.get_value("savefile", entry, null)
 		var checksum = config.get_value("savefile", "checksum", "")
 		if (checksum != calculateChecksum(saveData)):
-			saveData = []
+			saveData = {}
 			saveFile()
 
 # this function saves all the data that needs to be saved and calculates a checksum to avoid savescumming
@@ -45,3 +45,6 @@ static func safeGet(key, defaultValue):
 		return saveData[key]
 	return defaultValue
 	
+static func clearFile():
+	saveData = {}
+	saveFile()
