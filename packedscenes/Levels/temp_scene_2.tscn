@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://crrsi7b34ay5v"]
+
+[ext_resource type="Texture2D" uid="uid://beaogivrl50mm" path="res://backgrounds/forest_clearing.jpg" id="1_jmmwq"]
+[ext_resource type="Texture2D" uid="uid://b4qj54sdud60i" path="res://backgrounds/clearing.png" id="2_pdilu"]
+[ext_resource type="Texture2D" uid="uid://bqre44xfss85e" path="res://icon.svg" id="3_c86mq"]
+
+[node name="TempScene2" type="Node2D"]
+
+[node name="Background" type="CanvasGroup" parent="."]
+position = Vector2(531, 200)
+
+[node name="ForestClearing" type="Sprite2D" parent="Background"]
+z_index = -8
+position = Vector2(45, 124)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("1_jmmwq")
+
+[node name="TreeOverlay" type="Sprite2D" parent="Background"]
+z_index = 2
+position = Vector2(45, 124)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_pdilu")
+
+[node name="Sprite2D" type="Sprite2D" parent="Background"]
+position = Vector2(-282, 253)
+texture = ExtResource("3_c86mq")

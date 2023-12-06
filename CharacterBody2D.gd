@@ -18,6 +18,8 @@ var potentialPatrons = ["Fey", "Fiend", "Eldritch", "Coven"]
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 
 func _ready():
+	add_to_group("player")
+	
 	var patron = potentialPatrons[randi() % len(potentialPatrons)]
 	var outlineColor = null
 	match patron:
