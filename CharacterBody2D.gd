@@ -18,8 +18,6 @@ var potentialPatrons = ["Fey", "Fiend", "Eldritch", "Coven"]
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 
 func _ready():
-	add_to_group("player")
-	
 	var patron = potentialPatrons[randi() % len(potentialPatrons)]
 	var outlineColor = null
 	match patron:
@@ -39,7 +37,7 @@ func _ready():
 	SaveFile.setOrPut("Player.Patron", patron)
 
 
-func _physics_process(_delta):
+func _physics_process(_delta):	
 	if !$"../DialogueBox".visible:
 		# Get the input direction and handle the movement/deceleration.
 		# As good practice, you should replace UI actions with custom gameplay actions.

@@ -22,6 +22,9 @@
 [ext_resource type="PackedScene" uid="uid://i7v0l68exofs" path="res://packedscenes/LevelComponents/new_area.tscn" id="20_g5xpi"]
 [ext_resource type="PackedScene" uid="uid://crrsi7b34ay5v" path="res://packedscenes/Levels/temp_scene_2.tscn" id="21_r08me"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0nwkf"]
+size = Vector2(55, 58)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_7u4hs"]
 
 [sub_resource type="Animation" id="Animation_noyd1"]
@@ -287,9 +290,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0nwkf"]
-size = Vector2(55, 58)
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_3lajn"]
 radius = 75.0
 
@@ -371,10 +371,14 @@ identifier = "Flower5"
 [node name="Player" type="CharacterBody2D" parent="." node_paths=PackedStringArray("animationplayer", "dialogueBox")]
 position = Vector2(50, 350)
 scale = Vector2(2, 2)
+collision_mask = 13
 script = ExtResource("1_su4ak")
 animationplayer = NodePath("PlayerSprite/AnimatedSprite2D")
 outlineShader = ExtResource("7_86swl")
 dialogueBox = NodePath("../DialogueBox")
+
+[node name="PlayerColliderArea" type="CollisionShape2D" parent="Player"]
+shape = SubResource("RectangleShape2D_0nwkf")
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="Player"]
 scale = Vector2(1.5, 1.5)
@@ -392,10 +396,9 @@ sprite_frames = SubResource("SpriteFrames_784li")
 animation = &"down"
 frame_progress = 0.0977771
 
-[node name="PlayerColliderArea" type="CollisionShape2D" parent="Player"]
-shape = SubResource("RectangleShape2D_0nwkf")
-
 [node name="PlayerTriggerArea" type="Area2D" parent="Player"]
+collision_layer = 4
+collision_mask = 2
 
 [node name="TriggerShape" type="CollisionShape2D" parent="Player/PlayerTriggerArea"]
 position = Vector2(-0.5, 0)
@@ -404,6 +407,8 @@ shape = SubResource("CircleShape2D_3lajn")
 
 [node name="BoundingBox" type="StaticBody2D" parent="."]
 position = Vector2(372, 419)
+collision_layer = 8
+collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BoundingBox"]
 position = Vector2(-675, 51)
@@ -522,8 +527,8 @@ script = ExtResource("14_350qi")
 defaultSprite = ExtResource("14_r3a4n")
 
 [node name="NewArea" parent="." instance=ExtResource("20_g5xpi")]
-position = Vector2(44, 477)
-scale = Vector2(11.46, 2.765)
+position = Vector2(43, 452)
+scale = Vector2(11.1916, -2.44544)
 next_scene = ExtResource("21_r08me")
 
 [connection signal="area_entered" from="Player/PlayerTriggerArea" to="Player" method="_on_area_2d_area_entered"]
