@@ -107,6 +107,7 @@ func addToInventory(itemName, amount):
 		inventory[itemName] += amount
 	else:
 		inventory[itemName] = amount
+	PickupTextLoader.floatingPickupText.spawnLine("+ "+str(amount)+" x "+itemName, self.global_position)
 	SaveFile.setOrPut("Player.Inventory", inventory)
 
 

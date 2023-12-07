@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://eefd4dxjwkr8"]
+
+[ext_resource type="Script" path="res://scripts/utilities/floatingPickupText.gd" id="1_8lhf7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_uwkgh"]
+font_size = 20
+
+[node name="FloatingPickupTextHolder" type="Node2D"]
+z_index = 2
+script = ExtResource("1_8lhf7")
+floatingPickupTextLabelSettings = SubResource("LabelSettings_uwkgh")
+spawnOffset = Vector2(-50, -60)
+floatVector = Vector2(0, -50)
+disappearTime = 1.4
