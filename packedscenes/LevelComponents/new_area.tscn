@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://i7v0l68exofs"]
+
+[ext_resource type="Script" path="res://scripts/interactables/change_scene.gd" id="1_5kap2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_em5ht"]
+
+[node name="NewArea" type="Area2D"]
+collision_layer = 4
+script = ExtResource("1_5kap2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_em5ht")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

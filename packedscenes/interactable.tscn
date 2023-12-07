@@ -6,9 +6,11 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_c4rjw"]
 
 [node name="Interactable" type="StaticBody2D"]
+collision_layer = 2
 script = ExtResource("1_47srk")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
 
 [node name="Sprite" type="Sprite2D" parent="Area2D"]
 z_index = -5

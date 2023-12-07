@@ -37,7 +37,7 @@ func _ready():
 	SaveFile.setOrPut("Player.Patron", patron)
 
 
-func _physics_process(_delta):
+func _physics_process(_delta):	
 	if !$"../DialogueBox".visible:
 		# Get the input direction and handle the movement/deceleration.
 		# As good practice, you should replace UI actions with custom gameplay actions.
