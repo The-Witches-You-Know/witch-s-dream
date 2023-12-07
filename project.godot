@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Savefile="*res://scripts/savefile/savefile.gd"
+PickupTextLoader="*res://scripts/utilities/pickupTextLoader.gd"
 
 [input]
 
