@@ -25,6 +25,7 @@ func _ready():
 		
 # When starting dialogue, pick out correct dialogue tree and start at correct line
 func openDialogueBox(dialogueTreeName, openingLineIndex):
+	Cursor.show()
 	speakerSprite.texture = ResourceLoader.load(DialogueTree.dialogueDefaultSpeakerSprites[dialogueTreeName])
 	self.visible = true
 	self.currentDialogueTree = DialogueTree.dialogueTreeEntries[dialogueTreeName]
@@ -35,6 +36,7 @@ func openDialogueBox(dialogueTreeName, openingLineIndex):
 	
 # clear out the dialogue from the box and hide it
 func hideDialogueBox():
+	Cursor.hide()
 	self.currentDialogueTree = null
 	self.currentDialogueTreeEntry = null
 	unfurlText()

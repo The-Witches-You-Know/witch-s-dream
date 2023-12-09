@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://3l8ah71xs705"]
+[gd_scene load_steps=5 format=3 uid="uid://3l8ah71xs705"]
 
 [ext_resource type="PackedScene" uid="uid://v05h6xxurkyg" path="res://packedscenes/Menu/confirm_popup.tscn" id="1_1w22u"]
 [ext_resource type="Theme" uid="uid://bpib7d5jc2102" path="res://packedscenes/Menu/menu_theme.tres" id="1_gdvt1"]
 [ext_resource type="Script" path="res://scripts/ui/menu.gd" id="2_0srvy"]
 [ext_resource type="PackedScene" uid="uid://do2clar5jx0l3" path="res://Main.tscn" id="3_wkicm"]
-[ext_resource type="PackedScene" uid="uid://dwobw7v4vtcd" path="res://packedscenes/Menu/cursor.tscn" id="5_i4sv5"]
 
 [node name="Menu" type="CanvasLayer"]
 script = ExtResource("2_0srvy")
@@ -47,8 +46,6 @@ text = "Continue"
 offset_top = -112.0
 offset_bottom = -112.0
 message = "Are you sure you want to start a new game?"
-
-[node name="cursor" parent="." instance=ExtResource("5_i4sv5")]
 
 [connection signal="button_up" from="Menu-UI/VBoxContainer/NewGameButton" to="." method="_on_newgame_button"]
 [connection signal="button_up" from="Menu-UI/VBoxContainer/ContiueButton" to="." method="_on_contiue_button"]
