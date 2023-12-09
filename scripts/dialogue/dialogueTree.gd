@@ -44,14 +44,13 @@ static var dialogueTreeEntries = {
 				DialogueTreeOption.standardOption("Could u be a ferret instead?", 2).addCallback(
 					func(dialogue): dialogue.speakerSprite.texture = ResourceLoader.load("res://sprites/ferret.png")
 				),
-				DialogueTreeOption.standardOption("Could u pls keep being cute cute?", 2),
+				DialogueTreeOption.standardOption("Could u pls keep being cute?", 2),
 			]
 		),
 		DialogueTreeEntry.finish( 
 			"Way ahead of u fam. Have a nice day!" 
 		)
 	]
-	
 }
 
 static var dialogueDefaultSpeakerSprites = {

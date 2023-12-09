@@ -4,8 +4,10 @@ class_name DialogueHandler
 var currentDialogueTree = null
 var currentDialogueTreeEntry = null
 var isPrintingOutText = false
-var dialogueOptions = []
-var speakerSprite
+@onready var dialogueOptions = [$DialogueOption1, $DialogueOption2, $DialogueOption3, $DialogueOption4]
+@onready var speakerSprite = $SpeakerSprite
+@onready var speakerNameLabel = $MainTextPanel/SpeakerNameLabel
+@onready var mainTextLabel = $MainTextPanel/MainTextLabel
 
 var expectedDialogueOptionsPositions = [
 	[],
@@ -17,20 +19,18 @@ var expectedDialogueOptionsPositions = [
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	speakerSprite = $SpeakerSprite
-	dialogueOptions = [$DialogueOption1, $DialogueOption2, $DialogueOption3, $DialogueOption4]
 	for option in dialogueOptions:
 		option.visible = false
 	#openDialogueBox("Test", SaveFile.safeGet("DialogueTreeEntry.Test.NextOpeningLineIndex", 0))
 		
 # When starting dialogue, pick out correct dialogue tree and start at correct line
 func openDialogueBox(dialogueTreeName, openingLineIndex):
-	$SpeakerSprite.texture = ResourceLoader.load(DialogueTree.dialogueDefaultSpeakerSprites[dialogueTreeName])
+	speakerSprite.texture = ResourceLoader.load(DialogueTree.dialogueDefaultSpeakerSprites[dialogueTreeName])
 	self.visible = true
 	self.currentDialogueTree = DialogueTree.dialogueTreeEntries[dialogueTreeName]
 	self.currentDialogueTreeEntry = currentDialogueTree[openingLineIndex]
-	$MainTextPanel/SpeakerNameLabel.text = dialogueTreeName
-	$MainTextPanel/MainTextLabel.text = ""
+	speakerNameLabel.text = dialogueTreeName
+	mainTextLabel.text = ""
 	unfurlText()
 	
 # clear out the dialogue from the box and hide it
@@ -62,7 +62,7 @@ func onTextFullyPrintedOut():
 func unfurlText():
 	for option in dialogueOptions:
 		option.visible = false
-	$MainTextPanel/MainTextLabel.text = "" if currentDialogueTreeEntry == null else currentDialogueTreeEntry.dialogueLine
+	mainTextLabel.text = "" if currentDialogueTreeEntry == null else currentDialogueTreeEntry.dialogueLine
 	createDialogueOptions()
 
 # create clickable boxes containing different dialogue options and place them on the screen in an aesthetic manner
