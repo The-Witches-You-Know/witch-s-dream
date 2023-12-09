@@ -1,9 +1,6 @@
 extends CharacterBody2D
-@export var animationplayer:AnimatedSprite2D
-
-@export var outlineShader: ShaderMaterial
-
-@export var dialogueBox: DialogueHandler
+@onready var animationplayer:AnimatedSprite2D = $PlayerSprite/AnimatedSprite2D
+var outlineShader: ShaderMaterial
 
 const SPEED = 150.0
 const JUMP_VELOCITY = -400.0
@@ -18,6 +15,7 @@ var potentialPatrons = ["Fey", "Fiend", "Eldritch", "Coven"]
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 
 func _ready():
+	outlineShader = ResourceLoader.load("res://packedscenes/shaderMaterial.tres")
 	var patron = potentialPatrons[randi() % len(potentialPatrons)]
 	var outlineColor = null
 	match patron:
@@ -38,7 +36,7 @@ func _ready():
 
 
 func _physics_process(_delta):	
-	if !$"../DialogueBox".visible:
+	if !DialogueBox.getVisible():
 		# Get the input direction and handle the movement/deceleration.
 		# As good practice, you should replace UI actions with custom gameplay actions.
 		var inputX = Input.get_axis("character_left", "character_right")
@@ -66,7 +64,7 @@ func _physics_process(_delta):
 		
 	
 func _input(ev):
-	if ev is InputEventMouseButton and ev.button_index == MOUSE_BUTTON_LEFT and ev.pressed && !$"../DialogueBox".visible:
+	if ev is InputEventMouseButton and ev.button_index == MOUSE_BUTTON_LEFT and ev.pressed && !DialogueBox.getVisible():
 		if (closestInteractable != null):
 			closestInteractable.onInteraction(self)
 	
@@ -127,7 +125,7 @@ func _on_area_2d_area_exited(area):
 		area.get_parent().onTriggerExit(self)
 		
 func startDialogue(dialogueName, interactableReference):
-		dialogueBox.openDialogueBox(dialogueName, 0)
+		DialogueBox.open(dialogueName, 0)
 		
 
 		
