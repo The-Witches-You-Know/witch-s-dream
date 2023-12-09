@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dwobw7v4vtcd"]
+[gd_scene load_steps=6 format=3 uid="uid://dck6i35wd28pl"]
 
 [ext_resource type="Script" path="res://scripts/ui/cursor.gd" id="1_4t12w"]
 [ext_resource type="Texture2D" uid="uid://3skh3m8ybrwm" path="res://sprites/wand.png" id="2_2hake"]
@@ -44,6 +44,7 @@ _data = {
 script = ExtResource("1_4t12w")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 4096
 texture_filter = 1
 position = Vector2(51, 43)
 scale = Vector2(0.7, 0.7)
