@@ -60,6 +60,9 @@ func _physics_process(_delta):
 		move_and_slide()
 		if (velocity != Vector2(0,0) && len(interactablesInRange) > 1):	
 			refreshClosestInteractable()
+	else:
+		animationplayer.stop()
+		
 		
 	
 func _input(ev):
