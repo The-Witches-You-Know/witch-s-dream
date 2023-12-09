@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://dpn3yycnujsm5" path="res://packedscenes/dialogue_option.tscn" id="10_a7co6"]
 [ext_resource type="Texture2D" uid="uid://d3trt17hd66lk" path="res://sprites/ferret.png" id="10_r6mbt"]
 [ext_resource type="Script" path="res://scripts/interactables/deer.gd" id="14_350qi"]
-[ext_resource type="Texture2D" uid="uid://ps1ghvwb0nxw" path="res://sprites/zy0ne17e3qla12.png" id="14_r3a4n"]
+[ext_resource type="Texture2D" uid="uid://dn2cwcor5ife7" path="res://sprites/deer_downscaled.png" id="19_gb8gi"]
 [ext_resource type="PackedScene" uid="uid://i7v0l68exofs" path="res://packedscenes/LevelComponents/new_area.tscn" id="20_g5xpi"]
 [ext_resource type="PackedScene" uid="uid://crrsi7b34ay5v" path="res://packedscenes/Levels/temp_scene_2.tscn" id="21_r08me"]
 
@@ -524,16 +524,14 @@ autowrap_mode = 2
 z_index = -1
 offset_left = 225.0
 offset_top = -150.0
-offset_right = 825.0
-offset_bottom = 450.0
-scale = Vector2(0.5, 0.5)
+offset_right = 525.0
+offset_bottom = 150.0
 texture = ExtResource("10_r6mbt")
 
 [node name="Deer" parent="." instance=ExtResource("3_gwnuu")]
 position = Vector2(24, -39)
-scale = Vector2(0.02, 0.02)
 script = ExtResource("14_350qi")
-defaultSprite = ExtResource("14_r3a4n")
+defaultSprite = ExtResource("19_gb8gi")
 
 [node name="NewArea" parent="." instance=ExtResource("20_g5xpi")]
 position = Vector2(44, 474)
