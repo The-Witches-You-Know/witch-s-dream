@@ -12,22 +12,22 @@ static var dialogueTreeEntries = {
 			[
 				DialogueTreeOption.standardOption("Here we do a loop", 1),
 				DialogueTreeOption.standardOption("Would you kindly finish dialogue?", 2).addCallback(
-					func (dialogue): SaveFile.setOrPut("DialogueTreeEntry.Test.NextOpeningLineIndex", 4)
+					func (_dialogue): SaveFile.setOrPut("DialogueTreeEntry.Test.NextOpeningLineIndex", 4)
 				),
 				DialogueTreeOption.finishOption("Aight imma head out").addCallback(
-					func (dialogue): SaveFile.setOrPut("DialogueTreeEntry.Test.ChoseOptionThree", true)
+					func (_dialogue): SaveFile.setOrPut("DialogueTreeEntry.Test.ChoseOptionThree", true)
 				),
 				DialogueTreeOption.standardOption("Special finish dialogue by speaker, visible only to those who clicked option 3 at least once", 5).showOnCondition(
-					func (dialogue): return SaveFile.safeGet("DialogueTreeEntry.Test.ChoseOptionThree", false)
+					func (_dialogue): return SaveFile.safeGet("DialogueTreeEntry.Test.ChoseOptionThree", false)
 				),
 			]
 		),
 		DialogueTreeEntry.finish("Test dialogue tree, signing off. Have a nice day!"),
 		DialogueTreeEntry.monologue("Here is a test for starting new dialogue for the same speaker. It will advance to the 3 options just like before.", 1).addDefaultCallback(
-			func (dialogue): SaveFile.setOrPut("DialogueTreeEntry.Test.NextOpeningLineIndex", 3)
+			func (_dialogue): SaveFile.setOrPut("DialogueTreeEntry.Test.NextOpeningLineIndex", 3)
 		),
 		DialogueTreeEntry.monologue("Here is a special line for folks selecting option 2 in the multi-option dialogue tree entry. It will advance to the 3 options just like before and reset the starting line.", 1).addDefaultCallback(
-			func (dialogue): SaveFile.setOrPut("DialogueTreeEntry.Test.NextOpeningLineIndex", 0)
+			func (_dialogue): SaveFile.setOrPut("DialogueTreeEntry.Test.NextOpeningLineIndex", 0)
 		),
 		DialogueTreeEntry.finish("Special finish dialogue triggered. Finishing dialogue..."),
 		
@@ -36,7 +36,7 @@ static var dialogueTreeEntries = {
 		DialogueTreeEntry.monologue( 
 			"test" ,1
 		).addDefaultCallback(
-			func (dialogue): SaveFile.setOrPut("DialogueTreeEntry.Deer.NextOpeningLineIndex",1)
+			func (_dialogue): SaveFile.setOrPut("DialogueTreeEntry.Deer.NextOpeningLineIndex",1)
 		),
 		DialogueTreeEntry.multiOption(
 			"Hemlo. Am deer.",
