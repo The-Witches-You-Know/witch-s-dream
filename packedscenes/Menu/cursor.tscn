@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=3 uid="uid://dwobw7v4vtcd"]
+
+[ext_resource type="Script" path="res://scripts/ui/cursor.gd" id="1_4t12w"]
+[ext_resource type="Texture2D" uid="uid://3skh3m8ybrwm" path="res://sprites/wand.png" id="2_2hake"]
+
+[sub_resource type="Animation" id="Animation_k3dca"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_5nbnk"]
+resource_name = "click"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.025, 0.05, 0.075, 0.1, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 5, 6, 7, 8, 8, 8]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qprq7"]
+_data = {
+"RESET": SubResource("Animation_k3dca"),
+"click": SubResource("Animation_5nbnk")
+}
+
+[node name="cursor" type="Node2D"]
+script = ExtResource("1_4t12w")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(51, 43)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_2hake")
+offset = Vector2(-26, -8)
+flip_h = true
+hframes = 9
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qprq7")
+}
