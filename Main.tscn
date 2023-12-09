@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://do2clar5jx0l3"]
+[gd_scene load_steps=65 format=3 uid="uid://do2clar5jx0l3"]
 
 [ext_resource type="Texture2D" uid="uid://beaogivrl50mm" path="res://backgrounds/forest_clearing.jpg" id="1_rpea1"]
 [ext_resource type="Script" path="res://CharacterBody2D.gd" id="1_su4ak"]
@@ -18,9 +18,10 @@
 [ext_resource type="PackedScene" uid="uid://dpn3yycnujsm5" path="res://packedscenes/dialogue_option.tscn" id="10_a7co6"]
 [ext_resource type="Texture2D" uid="uid://d3trt17hd66lk" path="res://sprites/ferret.png" id="10_r6mbt"]
 [ext_resource type="Script" path="res://scripts/interactables/deer.gd" id="14_350qi"]
-[ext_resource type="Texture2D" uid="uid://dn2cwcor5ife7" path="res://sprites/deer_downscaled.png" id="19_gb8gi"]
+[ext_resource type="Texture2D" uid="uid://ps1ghvwb0nxw" path="res://sprites/zy0ne17e3qla12.png" id="14_r3a4n"]
 [ext_resource type="PackedScene" uid="uid://i7v0l68exofs" path="res://packedscenes/LevelComponents/new_area.tscn" id="20_g5xpi"]
 [ext_resource type="PackedScene" uid="uid://crrsi7b34ay5v" path="res://packedscenes/Levels/temp_scene_2.tscn" id="21_r08me"]
+[ext_resource type="PackedScene" uid="uid://dwobw7v4vtcd" path="res://packedscenes/Menu/cursor.tscn" id="22_flxl7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0nwkf"]
 size = Vector2(55, 58)
@@ -317,7 +318,7 @@ size = Vector2(463.5, 53)
 [sub_resource type="LabelSettings" id="LabelSettings_dauba"]
 font_size = 22
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D2" type="Node2D"]
 position = Vector2(531, 200)
 
 [node name="Background" type="CanvasGroup" parent="."]
@@ -524,19 +525,23 @@ autowrap_mode = 2
 z_index = -1
 offset_left = 225.0
 offset_top = -150.0
-offset_right = 525.0
-offset_bottom = 150.0
+offset_right = 825.0
+offset_bottom = 450.0
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("10_r6mbt")
 
 [node name="Deer" parent="." instance=ExtResource("3_gwnuu")]
 position = Vector2(24, -39)
+scale = Vector2(0.02, 0.02)
 script = ExtResource("14_350qi")
-defaultSprite = ExtResource("19_gb8gi")
+defaultSprite = ExtResource("14_r3a4n")
 
 [node name="NewArea" parent="." instance=ExtResource("20_g5xpi")]
 position = Vector2(44, 474)
 scale = Vector2(11.1916, -2.44544)
 next_scene = ExtResource("21_r08me")
+
+[node name="cursor" parent="." instance=ExtResource("22_flxl7")]
 
 [connection signal="area_entered" from="Player/PlayerTriggerArea" to="Player" method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Player/PlayerTriggerArea" to="Player" method="_on_area_2d_area_exited"]

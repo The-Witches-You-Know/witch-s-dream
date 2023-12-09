@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtliolk3yef2x"]
+
+[ext_resource type="PackedScene" uid="uid://dwobw7v4vtcd" path="res://packedscenes/Menu/cursor.tscn" id="1_73hrh"]
+
+[node name="flower_cutting" type="Node2D"]
+
+[node name="cursor" parent="." instance=ExtResource("1_73hrh")]

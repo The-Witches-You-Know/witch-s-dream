@@ -1,0 +1,134 @@
+[gd_scene load_steps=17 format=3 uid="uid://oeli5ti0onn"]
+
+[ext_resource type="Texture2D" uid="uid://ci8geo6mpflai" path="res://sprites/cutting/flower1/herb-stem.png" id="1_2ymgj"]
+[ext_resource type="Script" path="res://scripts/flower-cutting/flower1.gd" id="1_61lin"]
+[ext_resource type="Texture2D" uid="uid://irug04ldqnm3" path="res://sprites/cutting/flower1/herb-berry.png" id="2_tu0aw"]
+[ext_resource type="Texture2D" uid="uid://cq2mund4sq7h7" path="res://sprites/cutting/flower1/herb-berry2.png" id="3_8q18p"]
+[ext_resource type="Texture2D" uid="uid://cab4dx4q3lf1m" path="res://sprites/cutting/flower1/herb-leaf1.png" id="4_vaglg"]
+[ext_resource type="Texture2D" uid="uid://b8m41ndodkltv" path="res://sprites/cutting/flower1/herb-leaf2.png" id="5_dup0o"]
+[ext_resource type="Texture2D" uid="uid://c7771j7f75pnq" path="res://sprites/cutting/flower1/herb-leaf4.png" id="6_6pfwg"]
+[ext_resource type="Texture2D" uid="uid://8wikl465mgwl" path="res://sprites/cutting/flower1/herb-leaf3.png" id="7_w3ot2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gidvx"]
+size = Vector2(5.25, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yttvp"]
+size = Vector2(5, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_af30h"]
+size = Vector2(5, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e28yj"]
+size = Vector2(5, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wi2ir"]
+size = Vector2(2, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_73g60"]
+size = Vector2(2, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l8w6u"]
+size = Vector2(2, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ods5"]
+size = Vector2(2, 6)
+
+[node name="flower1" type="Node2D"]
+position = Vector2(548, 327)
+scale = Vector2(10, 10)
+script = ExtResource("1_61lin")
+
+[node name="stem" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -1)
+texture = ExtResource("1_2ymgj")
+
+[node name="berry1" type="Sprite2D" parent="stem"]
+position = Vector2(-7.5, -15.5)
+texture = ExtResource("2_tu0aw")
+
+[node name="berry2" type="Sprite2D" parent="stem"]
+position = Vector2(-2, -10.5)
+texture = ExtResource("3_8q18p")
+
+[node name="berry3" type="Sprite2D" parent="stem"]
+position = Vector2(5.5, -24.5)
+texture = ExtResource("2_tu0aw")
+
+[node name="berry4" type="Sprite2D" parent="stem"]
+position = Vector2(11.5, -25.5)
+texture = ExtResource("2_tu0aw")
+
+[node name="leaf1" type="Sprite2D" parent="stem"]
+position = Vector2(-11, 14.5)
+texture = ExtResource("4_vaglg")
+
+[node name="leaf2" type="Sprite2D" parent="stem"]
+position = Vector2(10, 18.5)
+texture = ExtResource("5_dup0o")
+
+[node name="leaf3" type="Sprite2D" parent="stem"]
+position = Vector2(14, -4.5)
+scale = Vector2(1, 1)
+texture = ExtResource("7_w3ot2")
+
+[node name="leaf4" type="Sprite2D" parent="stem"]
+position = Vector2(-6.5, 1)
+texture = ExtResource("6_6pfwg")
+
+[node name="berry1" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="berry1"]
+position = Vector2(-7.625, -16.5)
+shape = SubResource("RectangleShape2D_gidvx")
+
+[node name="berry2" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="berry2"]
+position = Vector2(-1.5, -11.5)
+shape = SubResource("RectangleShape2D_yttvp")
+
+[node name="berry3" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="berry3"]
+position = Vector2(5.5, -25.5)
+shape = SubResource("RectangleShape2D_af30h")
+
+[node name="berry4" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="berry4"]
+position = Vector2(11.5, -26.5)
+shape = SubResource("RectangleShape2D_e28yj")
+
+[node name="cut1" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cut1"]
+position = Vector2(-4, 9.5)
+shape = SubResource("RectangleShape2D_wi2ir")
+
+[node name="cut2" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cut2"]
+position = Vector2(4, 14)
+shape = SubResource("RectangleShape2D_73g60")
+
+[node name="cut3" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cut3"]
+position = Vector2(5, -1.5)
+shape = SubResource("RectangleShape2D_l8w6u")
+
+[node name="cut4" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cut4"]
+position = Vector2(1, -1)
+shape = SubResource("RectangleShape2D_7ods5")
+
+[connection signal="input_event" from="berry1" to="." method="_on_berry_1_input_event"]
+[connection signal="input_event" from="berry2" to="." method="_on_berry_2_input_event"]
+[connection signal="input_event" from="berry3" to="." method="_on_berry_3_input_event"]
+[connection signal="input_event" from="berry4" to="." method="_on_berry_4_input_event"]
+[connection signal="input_event" from="cut1" to="." method="_on_cut_1_input_event"]
+[connection signal="input_event" from="cut2" to="." method="_on_cut_2_input_event"]
+[connection signal="input_event" from="cut3" to="." method="_on_cut_3_input_event"]
+[connection signal="input_event" from="cut4" to="." method="_on_cut_4_input_event"]
