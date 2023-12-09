@@ -5,6 +5,7 @@ var currentDialogueTree = null
 var currentDialogueTreeEntry = null
 var isPrintingOutText = false
 var dialogueOptions = []
+var speakerSprite
 
 var expectedDialogueOptionsPositions = [
 	[],
@@ -16,6 +17,7 @@ var expectedDialogueOptionsPositions = [
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	speakerSprite = $SpeakerSprite
 	dialogueOptions = [$DialogueOption1, $DialogueOption2, $DialogueOption3, $DialogueOption4]
 	for option in dialogueOptions:
 		option.visible = false
@@ -23,6 +25,7 @@ func _ready():
 		
 # When starting dialogue, pick out correct dialogue tree and start at correct line
 func openDialogueBox(dialogueTreeName, openingLineIndex):
+	$SpeakerSprite.texture = ResourceLoader.load(DialogueTree.dialogueDefaultSpeakerSprites[dialogueTreeName])
 	self.visible = true
 	self.currentDialogueTree = DialogueTree.dialogueTreeEntries[dialogueTreeName]
 	self.currentDialogueTreeEntry = currentDialogueTree[openingLineIndex]
@@ -98,7 +101,7 @@ func _on_dialogue_option_4_pressed():
 	
 func onOptionSelection(optionIndex):
 	if (currentDialogueTreeEntry.dialogueOptions[optionIndex].selectionCallback != null):
-		currentDialogueTreeEntry.dialogueOptions[optionIndex].selectionCallback.call()
+		currentDialogueTreeEntry.dialogueOptions[optionIndex].selectionCallback.call(self)
 	var nextIndex = currentDialogueTreeEntry.dialogueOptions[optionIndex].nextDialogueLineIndex
 	if (nextIndex == null):
 		hideDialogueBox()
