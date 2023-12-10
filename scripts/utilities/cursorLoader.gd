@@ -10,8 +10,8 @@ func _ready():
 	add_child(cursor)
 
 func show():
-	cursor.visible = true
+	create_tween().tween_property(cursor.sprite, "modulate", Color(1.0,1.0,1.0,1.0), 0.15)
 	
 func hide():
-	cursor.visible = false
+	create_tween().tween_property(cursor.sprite, "modulate", Color(1.0,1.0,1.0,0.0), 0.5)
 
