@@ -20,28 +20,24 @@ offset_left = -300.0
 offset_top = -60.0
 offset_right = 200.0
 offset_bottom = 0.0
-action_mode = 0
 
 [node name="DialogueOption2" parent="." instance=ExtResource("2_lc5v5")]
 offset_left = -300.0
 offset_top = -60.0
 offset_right = 200.0
 offset_bottom = 0.0
-action_mode = 0
 
 [node name="DialogueOption3" parent="." instance=ExtResource("2_lc5v5")]
 offset_left = -300.0
 offset_top = -60.0
 offset_right = 200.0
 offset_bottom = 0.0
-action_mode = 0
 
 [node name="DialogueOption4" parent="." instance=ExtResource("2_lc5v5")]
 offset_left = -300.0
 offset_top = -60.0
 offset_right = 200.0
 offset_bottom = 0.0
-action_mode = 0
 
 [node name="MainTextPanel" type="TextureRect" parent="."]
 anchors_preset = 7

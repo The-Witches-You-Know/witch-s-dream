@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://do2clar5jx0l3"]
+[gd_scene load_steps=63 format=3 uid="uid://do2clar5jx0l3"]
 
 [ext_resource type="Texture2D" uid="uid://beaogivrl50mm" path="res://backgrounds/forest_clearing.jpg" id="1_rpea1"]
 [ext_resource type="Script" path="res://CharacterBody2D.gd" id="1_su4ak"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://wanlt82saimp" path="res://packedscenes/interactable.tscn" id="3_gwnuu"]
 [ext_resource type="Texture2D" uid="uid://cs5g4m452so8g" path="res://sprites/flowers/Flower001.png" id="5_yx7fe"]
 [ext_resource type="Texture2D" uid="uid://cgw8x8tb1lymf" path="res://sprites/flowers/Flower002.png" id="6_qs75j"]
-[ext_resource type="Material" uid="uid://dgau5sbugs6qw" path="res://packedscenes/shaderMaterial.tres" id="7_86swl"]
 [ext_resource type="Texture2D" uid="uid://b48cd2hb6th8x" path="res://sprites/flowers/Flower003.png" id="7_sjcmw"]
 [ext_resource type="Texture2D" uid="uid://bp06h2hurg50v" path="res://sprites/flowers/Flower004.png" id="8_ihqtd"]
 [ext_resource type="Texture2D" uid="uid://iiqibowbnr3c" path="res://sprites/flowers/Flower005.png" id="9_6qtjw"]
@@ -371,14 +370,11 @@ pickedFlowerSprite = null
 defaultSprite = ExtResource("9_6qtjw")
 identifier = "Flower5"
 
-[node name="Player" type="CharacterBody2D" parent="." node_paths=PackedStringArray("animationplayer", "dialogueBox")]
+[node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(50, 350)
 scale = Vector2(2, 2)
 collision_mask = 9
 script = ExtResource("1_su4ak")
-animationplayer = NodePath("PlayerSprite/AnimatedSprite2D")
-outlineShader = ExtResource("7_86swl")
-dialogueBox = NodePath("../DialogueBox")
 
 [node name="PlayerColliderArea" type="CollisionShape2D" parent="Player"]
 shape = SubResource("RectangleShape2D_0nwkf")
