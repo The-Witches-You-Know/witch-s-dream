@@ -4,7 +4,6 @@ class_name SettingsFile
 
 static var config = ConfigFile.new()
 static var settingsData = {}
-static var busLayout = null
 
 func _ready():
 	SettingsFile.loadFile()
@@ -29,7 +28,6 @@ static func saveFile():
 
 
 static func onSettingsLoad():
-	busLayout = ResourceLoader.load("res://default_bus_layout.tres")
 	setMasterVolume(safeGet("MasterVolume", 10))
 	setMusicVolume(safeGet("MusicVolume", 10))
 	setSFXVolume(safeGet("SFXVolume", 10))
@@ -49,7 +47,7 @@ static func setSFXVolume(value: float):
 	var busIndex = AudioServer.get_bus_index("SFX")
 	AudioServer.set_bus_volume_db(busIndex, -80 + (8 * value))
 	AudioServer.set_bus_mute(busIndex, value == 0)
-
+	print()
 
 # Use this function to set any new value into the save file
 static func setOrPut(key, value):

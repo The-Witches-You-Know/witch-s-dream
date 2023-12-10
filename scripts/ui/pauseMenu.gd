@@ -41,11 +41,11 @@ func _on_main_menu_button_pressed():
 
 
 func _on_master_volume_slider_value_changed(value):
-	var busIndex = AudioServer.get_bus_index("Master")
+	SettingsFile.setOrPut("MasterVolume",value)
 	SettingsFile.setMasterVolume(value)
 
 func _on_music_volume_slider_value_changed(value):
-	var busIndex = AudioServer.get_bus_index("Music")
+	SettingsFile.setOrPut("MusicVolume",value)
 	SettingsFile.setMusicVolume(value)
 
 func _on_sfx_volume_slider_value_changed(value):
