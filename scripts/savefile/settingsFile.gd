@@ -31,7 +31,6 @@ static func onSettingsLoad():
 	setMasterVolume(safeGet("MasterVolume", 10))
 	setMusicVolume(safeGet("MusicVolume", 10))
 	setSFXVolume(safeGet("SFXVolume", 10))
-	
 
 static func setMasterVolume(value: float):
 	var busIndex = AudioServer.get_bus_index("Master")
