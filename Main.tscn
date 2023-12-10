@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://do2clar5jx0l3"]
+[gd_scene load_steps=24 format=3 uid="uid://do2clar5jx0l3"]
 
 [ext_resource type="Texture2D" uid="uid://beaogivrl50mm" path="res://backgrounds/forest_clearing.jpg" id="1_rpea1"]
 [ext_resource type="Script" path="res://scripts/interactables/flower.gd" id="2_jn7h2"]
@@ -9,8 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://b48cd2hb6th8x" path="res://sprites/flowers/Flower003.png" id="7_sjcmw"]
 [ext_resource type="Texture2D" uid="uid://bp06h2hurg50v" path="res://sprites/flowers/Flower004.png" id="8_ihqtd"]
 [ext_resource type="Texture2D" uid="uid://iiqibowbnr3c" path="res://sprites/flowers/Flower005.png" id="9_6qtjw"]
-[ext_resource type="PackedScene" uid="uid://blxekrbvhdp3u" path="res://packedscenes/player.tscn" id="14_18y58"]
+[ext_resource type="PackedScene" uid="uid://dbyo2twx8enji" path="res://packedscenes/player.tscn" id="14_18y58"]
 [ext_resource type="Script" path="res://scripts/interactables/deer.gd" id="14_350qi"]
+[ext_resource type="Texture2D" uid="uid://d3p73d6jnpjk7" path="res://sprites/pausemenu.png" id="15_fiqmb"]
+[ext_resource type="Script" path="res://scripts/ui/pauseMenu.gd" id="16_tr0ek"]
 [ext_resource type="Texture2D" uid="uid://dn2cwcor5ife7" path="res://sprites/deer_downscaled.png" id="19_gb8gi"]
 [ext_resource type="PackedScene" uid="uid://i7v0l68exofs" path="res://packedscenes/LevelComponents/new_area.tscn" id="20_g5xpi"]
 [ext_resource type="PackedScene" uid="uid://crrsi7b34ay5v" path="res://packedscenes/Levels/temp_scene_2.tscn" id="21_r08me"]
@@ -32,6 +34,11 @@ b = Vector2(417, -234)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l4htk"]
 size = Vector2(463.5, 53)
+
+[sub_resource type="LabelSettings" id="LabelSettings_cy4p3"]
+font_size = 32
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(531, 200)
@@ -123,3 +130,69 @@ scale = Vector2(11.1916, -2.44544)
 next_scene = ExtResource("21_r08me")
 
 [node name="Player" parent="." instance=ExtResource("14_18y58")]
+
+[node name="PauseMenu" type="Sprite2D" parent="."]
+process_mode = 2
+z_index = 3
+position = Vector2(45, 124)
+texture = ExtResource("15_fiqmb")
+script = ExtResource("16_tr0ek")
+
+[node name="PauseMenuContent" type="Node2D" parent="PauseMenu"]
+
+[node name="Label" type="Label" parent="PauseMenu/PauseMenuContent"]
+offset_left = -175.0
+offset_top = -175.0
+offset_right = 170.0
+offset_bottom = -125.0
+text = "Paused"
+label_settings = SubResource("LabelSettings_cy4p3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/PauseMenuContent"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -94.0
+offset_right = 100.0
+offset_bottom = 131.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ContinueButton" type="Button" parent="PauseMenu/PauseMenuContent/VBoxContainer"]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+text = "Continue"
+
+[node name="SettingsButton" type="Button" parent="PauseMenu/PauseMenuContent/VBoxContainer"]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+text = "Settings"
+
+[node name="Spacer" type="Control" parent="PauseMenu/PauseMenuContent/VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="MainMenuButton" type="Button" parent="PauseMenu/PauseMenuContent/VBoxContainer"]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+text = "Return to Main Menu"
+
+[node name="SettingsMenuContent" type="Node2D" parent="PauseMenu"]
+visible = false
+
+[node name="Label" type="Label" parent="PauseMenu/SettingsMenuContent"]
+offset_left = -175.0
+offset_top = -175.0
+offset_right = 170.0
+offset_bottom = -125.0
+text = "Settings"
+label_settings = SubResource("LabelSettings_cy4p3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="PauseMenu/PauseMenuContent/VBoxContainer/ContinueButton" to="PauseMenu" method="_on_continue_button_pressed"]
+[connection signal="pressed" from="PauseMenu/PauseMenuContent/VBoxContainer/SettingsButton" to="PauseMenu" method="_on_settings_button_pressed"]
+[connection signal="pressed" from="PauseMenu/PauseMenuContent/VBoxContainer/MainMenuButton" to="PauseMenu" method="_on_main_menu_button_pressed"]
