@@ -9,6 +9,8 @@ var isPrintingOutText = false
 @onready var speakerNameLabel = $MainTextPanel/SpeakerNameLabel
 @onready var mainTextLabel = $MainTextPanel/MainTextLabel
 
+var justOpened: bool = false
+
 var expectedDialogueOptionsPositions = [
 	[],
 	[Vector2(-300, -80)],
@@ -25,6 +27,10 @@ func _ready():
 		
 # When starting dialogue, pick out correct dialogue tree and start at correct line
 func openDialogueBox(dialogueTreeName, openingLineIndex):
+	if(self.visible):
+		#cannot open new dialogue box if dialogue box already open
+		return
+	justOpened = true
 	Cursor.show()
 	speakerSprite.texture = ResourceLoader.load(DialogueTree.dialogueDefaultSpeakerSprites[dialogueTreeName])
 	self.visible = true
@@ -44,16 +50,19 @@ func hideDialogueBox():
 
 func _unhandled_input(event):
 	if is_visible():
-		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			if isPrintingOutText:
-				printOutText()
-				onTextFullyPrintedOut()
-			else:
-				if len (currentDialogueTreeEntry.dialogueOptions) > 0 :
-					if (currentDialogueTreeEntry.dialogueOptions[0].dialogueLine == null):
-						onOptionSelection(0)
+		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+			if (event.pressed and !justOpened):
+				if isPrintingOutText:
+					printOutText()
+					onTextFullyPrintedOut()
 				else:
-					hideDialogueBox()
+					if len (currentDialogueTreeEntry.dialogueOptions) > 0 :
+						if (currentDialogueTreeEntry.dialogueOptions[0].dialogueLine == null):
+							onOptionSelection(0)
+					else:
+						hideDialogueBox()
+			else:
+				justOpened = false
 
 # trigger once text is fully inside the dialogue box		
 func onTextFullyPrintedOut():
@@ -102,6 +111,9 @@ func _on_dialogue_option_4_pressed():
 	onOptionSelection(3)
 	
 func onOptionSelection(optionIndex):
+	if (justOpened):
+		justOpened = false
+		return
 	if (currentDialogueTreeEntry.dialogueOptions[optionIndex].selectionCallback != null):
 		currentDialogueTreeEntry.dialogueOptions[optionIndex].selectionCallback.call(self)
 	var nextIndex = currentDialogueTreeEntry.dialogueOptions[optionIndex].nextDialogueLineIndex
@@ -110,4 +122,3 @@ func onOptionSelection(optionIndex):
 	else:		
 		currentDialogueTreeEntry = currentDialogueTree[nextIndex]
 		unfurlText()
-	

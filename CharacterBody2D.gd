@@ -127,8 +127,4 @@ func _on_area_2d_area_exited(area):
 		area.get_parent().onTriggerExit(self)
 		
 func startDialogue(dialogueName, interactableReference):
-		dialogueBox.openDialogueBox(dialogueName, 0)
-		
-
-		
-		
+	dialogueBox.openDialogueBox(dialogueName, SaveFile.safeGet("DialogueTreeEntry."+dialogueName+".NextOpeningLineIndex", 0))

@@ -2,6 +2,8 @@ extends Node2D
 
 class_name CursorNode
 
+@onready var sprite: Sprite2D = $Sprite2D
+
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	
