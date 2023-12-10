@@ -27,8 +27,6 @@ func _deferred_goto_scene(sceneNumber):
 	var s = ResourceLoader.load(scenes[sceneNumber])
 	current_scene.free()
 	current_scene = s.instantiate()
-	print("test")
-	print(current_scene)
 	get_tree().get_root().add_child(current_scene)
 	get_tree().set_current_scene(current_scene)
 	get_tree().paused = false

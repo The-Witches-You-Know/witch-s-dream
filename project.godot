@@ -22,6 +22,7 @@ PickupTextLoader="*res://scripts/utilities/pickupTextLoader.gd"
 Cursor="*res://scripts/utilities/cursorLoader.gd"
 DialogueBox="*res://scripts/utilities/dialogueBoxLoader.gd"
 SceneLoader="*res://scripts/utilities/sceneLoader.gd"
+Settingsfile="*res://scripts/savefile/settingsFile.gd"
 
 [input]
 
