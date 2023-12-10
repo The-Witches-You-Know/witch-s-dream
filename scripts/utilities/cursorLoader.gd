@@ -5,6 +5,7 @@ static var cursor: CursorNode
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	var node = ResourceLoader.load("res://packedscenes/Menu/cursor.tscn")
 	cursor = node.instantiate()
 	add_child(cursor)

@@ -1,5 +1,6 @@
-[gd_scene load_steps=24 format=3 uid="uid://do2clar5jx0l3"]
+[gd_scene load_steps=23 format=3 uid="uid://do2clar5jx0l3"]
 
+[ext_resource type="Script" path="res://scripts/gameScene.gd" id="1_41r3d"]
 [ext_resource type="Texture2D" uid="uid://beaogivrl50mm" path="res://backgrounds/forest_clearing.jpg" id="1_rpea1"]
 [ext_resource type="Script" path="res://scripts/interactables/flower.gd" id="2_jn7h2"]
 [ext_resource type="Texture2D" uid="uid://b4qj54sdud60i" path="res://backgrounds/clearing.png" id="2_v1tum"]
@@ -15,7 +16,6 @@
 [ext_resource type="Script" path="res://scripts/ui/pauseMenu.gd" id="16_tr0ek"]
 [ext_resource type="Texture2D" uid="uid://dn2cwcor5ife7" path="res://sprites/deer_downscaled.png" id="19_gb8gi"]
 [ext_resource type="PackedScene" uid="uid://i7v0l68exofs" path="res://packedscenes/LevelComponents/new_area.tscn" id="20_g5xpi"]
-[ext_resource type="PackedScene" uid="uid://crrsi7b34ay5v" path="res://packedscenes/Levels/temp_scene_2.tscn" id="21_r08me"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5a08c"]
 size = Vector2(460, 44.875)
@@ -40,8 +40,9 @@ font_size = 32
 outline_size = 5
 outline_color = Color(0, 0, 0, 1)
 
-[node name="Node2D" type="Node2D"]
+[node name="GameScene" type="Node2D"]
 position = Vector2(531, 200)
+script = ExtResource("1_41r3d")
 
 [node name="Background" type="CanvasGroup" parent="."]
 
@@ -127,12 +128,12 @@ defaultSprite = ExtResource("19_gb8gi")
 [node name="NewArea" parent="." instance=ExtResource("20_g5xpi")]
 position = Vector2(44, 474)
 scale = Vector2(11.1916, -2.44544)
-next_scene = ExtResource("21_r08me")
 
 [node name="Player" parent="." instance=ExtResource("14_18y58")]
 
 [node name="PauseMenu" type="Sprite2D" parent="."]
 process_mode = 2
+visible = false
 z_index = 3
 position = Vector2(45, 124)
 texture = ExtResource("15_fiqmb")
