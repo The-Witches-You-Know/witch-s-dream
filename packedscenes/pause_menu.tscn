@@ -1,0 +1,157 @@
+[gd_scene load_steps=4 format=3 uid="uid://bm2ulbvq148tn"]
+
+[ext_resource type="Texture2D" uid="uid://d3p73d6jnpjk7" path="res://sprites/pausemenu.png" id="1_dcf7b"]
+[ext_resource type="Script" path="res://scripts/ui/pauseMenu.gd" id="2_o8waw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_cy4p3"]
+font_size = 32
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[node name="PauseMenu" type="Sprite2D"]
+process_mode = 2
+visible = false
+z_index = 3
+position = Vector2(45, 124)
+texture = ExtResource("1_dcf7b")
+script = ExtResource("2_o8waw")
+
+[node name="PauseMenuContent" type="Node2D" parent="."]
+visible = false
+
+[node name="Label" type="Label" parent="PauseMenuContent"]
+offset_left = -175.0
+offset_top = -175.0
+offset_right = 170.0
+offset_bottom = -125.0
+text = "Paused"
+label_settings = SubResource("LabelSettings_cy4p3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenuContent"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -94.0
+offset_right = 100.0
+offset_bottom = 131.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ContinueButton" type="Button" parent="PauseMenuContent/VBoxContainer"]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+text = "Continue"
+
+[node name="SettingsButton" type="Button" parent="PauseMenuContent/VBoxContainer"]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+text = "Settings"
+
+[node name="Spacer" type="Control" parent="PauseMenuContent/VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="MainMenuButton" type="Button" parent="PauseMenuContent/VBoxContainer"]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+text = "Return to Main Menu"
+
+[node name="SettingsMenuContent" type="Node2D" parent="."]
+
+[node name="Label" type="Label" parent="SettingsMenuContent"]
+offset_left = -175.0
+offset_top = -175.0
+offset_right = 170.0
+offset_bottom = -125.0
+text = "Settings"
+label_settings = SubResource("LabelSettings_cy4p3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsMenuContent"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -94.0
+offset_right = 100.0
+offset_bottom = 131.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SliderContainer" type="Control" parent="SettingsMenuContent/VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+
+[node name="MasterVolumeSlider" type="HSlider" parent="SettingsMenuContent/VBoxContainer/SliderContainer"]
+layout_mode = 2
+offset_top = 20.0
+offset_right = 200.0
+offset_bottom = 45.0
+max_value = 10.0
+
+[node name="Label" type="Label" parent="SettingsMenuContent/VBoxContainer/SliderContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 25.0
+text = "Master Volume"
+horizontal_alignment = 1
+
+[node name="SliderContainer2" type="Control" parent="SettingsMenuContent/VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+
+[node name="MusicVolumeSlider" type="HSlider" parent="SettingsMenuContent/VBoxContainer/SliderContainer2"]
+layout_mode = 2
+offset_top = 20.0
+offset_right = 200.0
+offset_bottom = 45.0
+max_value = 10.0
+
+[node name="Label" type="Label" parent="SettingsMenuContent/VBoxContainer/SliderContainer2"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 25.0
+text = "Music Volume"
+horizontal_alignment = 1
+
+[node name="SliderContainer3" type="Control" parent="SettingsMenuContent/VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+
+[node name="SFXVolumeSlider" type="HSlider" parent="SettingsMenuContent/VBoxContainer/SliderContainer3"]
+layout_mode = 2
+offset_top = 20.0
+offset_right = 200.0
+offset_bottom = 45.0
+max_value = 10.0
+
+[node name="Label" type="Label" parent="SettingsMenuContent/VBoxContainer/SliderContainer3"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 25.0
+text = "SFX Volume"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="SettingsMenuContent/VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="ReturnButton" type="Button" parent="SettingsMenuContent/VBoxContainer"]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+text = "Return"
+
+[connection signal="pressed" from="PauseMenuContent/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="PauseMenuContent/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="PauseMenuContent/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="value_changed" from="SettingsMenuContent/VBoxContainer/SliderContainer/MasterVolumeSlider" to="." method="_on_master_volume_slider_value_changed"]
+[connection signal="value_changed" from="SettingsMenuContent/VBoxContainer/SliderContainer2/MusicVolumeSlider" to="." method="_on_music_volume_slider_value_changed"]
+[connection signal="value_changed" from="SettingsMenuContent/VBoxContainer/SliderContainer3/SFXVolumeSlider" to="." method="_on_sfx_volume_slider_value_changed"]
+[connection signal="pressed" from="SettingsMenuContent/VBoxContainer/ReturnButton" to="." method="_on_return_button_pressed"]

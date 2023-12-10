@@ -1,7 +1,5 @@
 extends CanvasLayer
 
-@export var starting_scene: PackedScene
-
 func _ready():
 	$confirm_popup.visible = false
 
@@ -20,5 +18,5 @@ func _on_popup_response(response):
 	
 func open_starting_scene():
 	Cursor.hide()
-	get_tree().change_scene_to_packed(starting_scene)
+	SceneLoader.gameScene()
 	
