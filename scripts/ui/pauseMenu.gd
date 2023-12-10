@@ -18,7 +18,6 @@ func open():
 	masterVolumeSlider.value = SettingsFile.safeGet("MasterVolume",10)
 	musicVolumeSlider.value = SettingsFile.safeGet("MusicVolume",10)
 	sfxVolumeSlider.value = SettingsFile.safeGet("SFXVolume",10)
-	
 
 func _input(ev):
 	if ev is InputEventKey and ev.keycode == KEY_ESCAPE and ev.pressed && get_tree().paused:
@@ -42,13 +41,16 @@ func _on_main_menu_button_pressed():
 
 
 func _on_master_volume_slider_value_changed(value):
-	SettingsFile.setOrPut("MasterVolume",value)
+	var busIndex = AudioServer.get_bus_index("Master")
+	SettingsFile.setMasterVolume(value)
 
 func _on_music_volume_slider_value_changed(value):
-	SettingsFile.setOrPut("MusicVolume",value)
+	var busIndex = AudioServer.get_bus_index("Music")
+	SettingsFile.setMusicVolume(value)
 
 func _on_sfx_volume_slider_value_changed(value):
 	SettingsFile.setOrPut("SFXVolume",value)
+	SettingsFile.setSFXVolume(value)
 
 func _on_return_button_pressed():	
 	settingsMenuContent.visible = false

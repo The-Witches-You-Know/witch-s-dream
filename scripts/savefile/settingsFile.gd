@@ -1,50 +1,68 @@
 extends Node
 
-class_name SaveFile
+class_name SettingsFile
 
 static var config = ConfigFile.new()
-static var saveData = {}
+static var settingsData = {}
+static var busLayout = null
 
 func _ready():
-	SaveFile.loadFile()
+	SettingsFile.loadFile()
 
 # this function reads all the saved data, and clears the save file if it has been altered or corrupted.
 static func loadFile():
-	var err = config.load("user://savefile.cfg")
+	var err = config.load("user://settingsfile.cfg")
 	if err == OK:
-		var entryKeys = config.get_value("savefile", "entry_keys", [])
+		var entryKeys = config.get_value("settings", "entry_keys", [])
 		for entry in entryKeys:
-			saveData[entry] = config.get_value("savefile", entry, null)
-		var checksum = config.get_value("savefile", "checksum", "")
-		if (checksum != calculateChecksum(saveData)):
-			saveData = {}
-			saveFile()
+			settingsData[entry] = config.get_value("settings", entry, null)
+	onSettingsLoad()
 
 # this function saves all the data that needs to be saved and calculates a checksum to avoid savescumming
 static func saveFile():
-	for key in saveData.keys():
-		config.set_value("savefile", key, saveData[key])
-	if (len(saveData.keys()) > 0):
-		config.set_value("savefile", "entry_keys", saveData.keys())
-		config.set_value("savefile", "checksum", calculateChecksum(saveData))
-	config.save("user://savefile.cfg")
+	for key in settingsData.keys():
+		config.set_value("settings", key, settingsData[key])
+	if (len(settingsData.keys()) > 0):
+		config.set_value("settings", "entry_keys", settingsData.keys())
+	config.save("user://settingsfile.cfg")
 	
-static func calculateChecksum(_saveData):
-	return JSON.stringify(_saveData).md5_text()
+
+
+static func onSettingsLoad():
+	busLayout = ResourceLoader.load("res://default_bus_layout.tres")
+	setMasterVolume(safeGet("MasterVolume", 10))
+	setMusicVolume(safeGet("MusicVolume", 10))
+	setSFXVolume(safeGet("SFXVolume", 10))
+	
+
+static func setMasterVolume(value: float):
+	var busIndex = AudioServer.get_bus_index("Master")
+	AudioServer.set_bus_volume_db(busIndex, -80 + (8 * value))
+	AudioServer.set_bus_mute(busIndex, value == 0)
+	
+static func setMusicVolume(value: float):
+	var busIndex = AudioServer.get_bus_index("Music")
+	AudioServer.set_bus_volume_db(busIndex, -80 + (8 * value))
+	AudioServer.set_bus_mute(busIndex, value == 0)
+	
+static func setSFXVolume(value: float):
+	var busIndex = AudioServer.get_bus_index("SFX")
+	AudioServer.set_bus_volume_db(busIndex, -80 + (8 * value))
+	AudioServer.set_bus_mute(busIndex, value == 0)
 
 
 # Use this function to set any new value into the save file
 static func setOrPut(key, value):
-	SaveFile.saveData[key] = value
-	SaveFile.saveFile()
+	SettingsFile.settingsData[key] = value
+	SettingsFile.saveFile()
 	
 # Use this function to safely retrieve any value from the save file.
 # Supply a default value in case info cannot be found.
 static func safeGet(key, defaultValue):
-	if saveData != null and saveData.has(key):
-		return saveData[key]
+	if settingsData != null and settingsData.has(key):
+		return settingsData[key]
 	return defaultValue
 	
 static func clearFile():
-	saveData = {}
+	settingsData = {}
 	saveFile()
